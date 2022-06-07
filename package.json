@@ -1,0 +1,24 @@
+{
+  "name": "anonymousfeedback",
+  "version": "1.0.0",
+  "description": "AnonymousFeedbackSystem",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/InnoSWP/AnonymousFeedback.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/InnoSWP/AnonymousFeedback/issues"
+  },
+  "homepage": "https://github.com/InnoSWP/AnonymousFeedback#readme",
+  "dependencies": {
+    "express": "^4.18.1",
+    "mongoose": "^6.3.5",
+    "nodemon": "^2.0.16"
+  }
+}
