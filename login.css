@@ -1,0 +1,26 @@
+html, body{
+    height: 100%;
+    margin: 0;
+}
+
+body{
+    display: flex;
+    border: 1px solid #13141f;
+}
+
+#top-nav {
+    display: flex;
+    justify-content: space-between;
+    margin: 5%;
+    border: 1px solid black
+}
+
+#form-div {
+    height: 400px;
+    width: 300px;
+    
+    margin:auto;
+    
+    border: 1px solid red;
+    
+}
