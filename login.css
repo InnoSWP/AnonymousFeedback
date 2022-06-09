@@ -5,14 +5,11 @@ html, body{
 
 body{
     display: flex;
-    border: 1px solid #13141f;
 }
 
 #top-nav {
     display: flex;
     justify-content: space-between;
-    margin: 5%;
-    border: 1px solid black
 }
 
 #form-div {
@@ -21,6 +18,48 @@ body{
     
     margin:auto;
     
-    border: 1px solid red;
     
+    border: 3px solid #f1f1f1;
+    border-radius: 5px;
+    
+    padding: 5%;
 }
+
+form{
+    padding: 5% 0 0 0;
+}
+
+input[type=text], input[type=password] {
+    width: 100%;
+    padding: 12px 20px;
+    margin: 10px 0px;
+    /* display: inline-block; */
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+  }
+
+  button[type='submit']{
+      width: 100%;
+
+      border: 3px solid #7fff00;
+     
+      font-size: 20px;
+
+      background-color: aquamarine;
+
+      cursor: pointer;
+  }
+
+  button {
+      border-radius: 5px;
+  }
+
+  nav button{
+      background-color: aliceblue;
+      width: 20%;
+      min-width: 50px;
+  }
+
+  button:hover {
+    opacity: 0.7;
+  }
