@@ -19,7 +19,7 @@ onload = () => {
 
     const backButton = document.getElementById('back-button');
     backButton.addEventListener('click', () => {
-        fetch('/');
+        fetch('/').then(response => window.location.href = response.url);
     })
 }
 
