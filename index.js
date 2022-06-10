@@ -14,6 +14,9 @@ app.get('/', (request, response) => {
 app.get('/student.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'student.js'));
 })
+app.get('/index.css', (request, response) => {
+    response.sendFile(path.join(__dirname, 'index.css'));
+})
 app.post('/api/codeword', (request, response) => {
     
     const codeWord = request.body.codeword;s
