@@ -22,6 +22,9 @@ app.get('/login', (request, response) => {
 app.get('/guest.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'guest.js'));
 })
+app.get('/login.js', (request, response) => {
+  response.sendFile(path.join(__dirname, 'login.js'));
+})
 app.get('/login.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.css'));
 })
