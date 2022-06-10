@@ -25,6 +25,15 @@ app.get('/guest.js', (request, response) => {
 app.get('/login.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.css'));
 })
+app.post('/dashboard', (request, response) => {
+    response.sendFile(path.join(__dirname, 'dashboard.html'));
+})
+app.get('/dashboard.css', (request, response) => {
+    response.sendFile(path.join(__dirname, 'dashboard.css'));
+})
+app.get('/dashboard.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'dashboard.js'));
+})
 
 app.post('/api/codeword', (request, response) => {
     
@@ -34,6 +43,12 @@ app.post('/api/codeword', (request, response) => {
     //NEED LOGIC TO SEND flag whether codeword is in DB or not
     
     response.end();
+})
+app.post('/api/feedback', (request, response) => {
+    //LOGIC WITH CREATING A NEW SESSION FOR USER WITH TOKEN IN COOKIES IN DATABASE
+
+    const id = 1311;
+    response.json({id: id}) // send the id of a created session
 })
 
 
