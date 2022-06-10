@@ -17,13 +17,14 @@ header{
     border: 1px solid black;
 
     display: flex;
-    justify-content: space-around;
+    align-items: center;
+    justify-content: space-between;
 
     padding: 5px 50px;
 
 }
 
-header > button {
+header button {
     height: fit-content;   
     margin-left: 100px;
 }
@@ -40,11 +41,27 @@ main {
     display: flex;
 }
 
-#feedback-list #session-list #detailed-feedback-div {
-    flex-grow: 1;
+#feedback-list, #session-list, #detailed-feedback-div {
+    flex-basis: 100%;
     border: 1px solid black;
     height: 100%;
-    width: 100%;
+    
+}
+
+
+
+main div button{
+    width: 80%;
+    margin: 2% 10%;
+}
+
+.session {
+    width: 80%;
+    margin: 5px auto;
+    border: 3px solid grey;
+    border-radius: 5px;
+
+    padding: 10px;
 }
 
 footer{
@@ -52,5 +69,27 @@ footer{
 
     border: 1px solid black;    
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
 }
 
+footer button {
+    margin-left: 20px;
+    height: fit-content;
+}
+
+footer div {
+    margin-right: 10px;
+}
+
+footer input {
+    width: 30em;
+}
+
+.session-header {
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
