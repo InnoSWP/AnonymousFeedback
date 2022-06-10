@@ -1,5 +1,4 @@
 const express = require('express');
-const res = require('express/lib/response');
 const path = require('path');
 
 const PORT = process.env.PORT || 5000;
@@ -17,6 +16,16 @@ app.get('/student.js', (request, response) => {
 app.get('/index.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'index.css'));
 })
+app.get('/login', (request, response) => {
+    response.sendFile(path.join(__dirname, 'login.html'));
+})
+app.get('/guest.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'guest.js'));
+})
+app.get('/login.css', (request, response) => {
+    response.sendFile(path.join(__dirname, 'login.css'));
+})
+
 app.post('/api/codeword', (request, response) => {
     
     const codeWord = request.body.codeword;s
