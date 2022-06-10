@@ -11,11 +11,11 @@
     <header>
         <div id="name">Name</div>
         <div>Session title</div>
-        <button>Log out</button>
+        <button onclick="location.href = '/';">Log out</button>
     </header>
     <main>
         <div id="session-list">
-            <div class="session">
+            <div id="1" class="session">
                 <div class="session-header">
                     <span class="session-title">Lab 1</span>
                     <span class="session-time">17:49</span>
@@ -25,8 +25,7 @@
                 </div>
             </div>
             
-            <button id="new-session-button">Create new session</button>
-            
+            <button id="new-session-button">Create new session</button>  
         </div>
         <div id="feedback-list">
             123
@@ -42,5 +41,6 @@
             <input type="text" value="http://innofeedback.herokuapp.com/feedback/JRo19A">
         </div>
     </footer>
+    <script src="/dashboard.js"></script>
 </body>
 </html>
