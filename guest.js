@@ -4,6 +4,8 @@ onload = () => {
         const login = generateRandomString(32);
         const password = generateRandomString(32);
 
+        
+
         const [name, surname] = prompt('Enter your name please', 'Jhon Smith').split(' ');
         fetch('/dashboard', {
             method: 'POST',
@@ -13,6 +15,11 @@ onload = () => {
             body: JSON.stringify({name: name, surname: surname, login: login, password:password})
         })
 
+    })
+
+    const backButton = document.getElementById('back-button');
+    backButton.addEventListener('click', () => {
+        fetch('/');
     })
 }
 
