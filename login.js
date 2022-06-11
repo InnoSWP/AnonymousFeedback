@@ -3,5 +3,5 @@ const form = document.getElementById('login-form');
 form.onsubmit = () => {
     
 
-    return false;
+    return true;
 }
