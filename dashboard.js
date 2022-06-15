@@ -1,5 +1,3 @@
-console.log('hello world!')
-
 function addMessage(feedback){
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
@@ -10,29 +8,12 @@ function addMessage(feedback){
                                 <div class="feedback-time">${feedback.time}</div>
                             </div>
                             <div class="feedback-content">
-                                <div>${feedback.text}</div>
+                                ${feedback.text}
                            </div>`;
     console.log(newMessage);
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
-
-const test = {time: "11:11", text: "Nice"};
-
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-addMessage(test);
-
-
-
-
-
 
 
 
