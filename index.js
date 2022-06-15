@@ -54,7 +54,6 @@ app.post('/api/feedback', (request, response) => {
     response.json({id: id}) // send the id of a created session
 })
 
-
 const start = () => {
     try {
         app.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
