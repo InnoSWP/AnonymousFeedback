@@ -7,9 +7,6 @@ const app = express();
 
 app.use(express.json()) // for a server to accept json format
 
-app.get('/', (request, response) => {
-
-})
 app.get('/student.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'student.js'));
 })
