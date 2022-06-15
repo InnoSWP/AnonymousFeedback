@@ -115,3 +115,8 @@ footer input {
     justify-content: space-between;
     margin: 5px 0;
 }
+
+.feedback-content {
+    width: 100%;
+    word-wrap: break-word;
+}
