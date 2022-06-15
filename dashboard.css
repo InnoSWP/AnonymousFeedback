@@ -64,6 +64,8 @@ main div button{
     padding: 10px;
 }
 
+
+
 footer{
     flex-basis: 40px;
 
@@ -95,7 +97,10 @@ footer input {
 }
 
 
-
+.my_scroll_div{
+    overflow-y: auto;
+    max-height: 600px;
+}
 
 .feedback-item {
     width: 80%;
