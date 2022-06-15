@@ -23,7 +23,7 @@ app.get('/guest.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'guest.js'));
 })
 app.get('/login.js', (request, response) => {
-  response.sendFile(path.join(__dirname, 'login.js'));
+    response.sendFile(path.join(__dirname, 'login.js'));
 })
 app.get('/login.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.css'));
@@ -39,12 +39,12 @@ app.get('/dashboard.js', (request, response) => {
 })
 
 app.post('/api/codeword', (request, response) => {
-    
+
     const codeWord = request.body.codeword;s
     console.log(codeWord);
 
     //NEED LOGIC TO SEND flag whether codeword is in DB or not
-    
+
     response.end();
 })
 app.post('/api/feedback', (request, response) => {
