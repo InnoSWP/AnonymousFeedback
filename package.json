@@ -4,7 +4,8 @@
   "description": "AnonymousFeedbackSystem",
   "main": "index.js",
   "scripts": {
-    "start": "nodemon index.js"
+    "start": "nodemon index.js",
+    "buildTeacher": "rollup --config rollup.configTeacher.js"
   },
   "repository": {
     "type": "git",
@@ -24,6 +25,7 @@
     "socket.io-client": "^4.5.1"
   },
   "devDependencies": {
+    "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
     "rollup": "^2.75.6"
   }
