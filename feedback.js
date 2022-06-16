@@ -1,4 +1,4 @@
-const URL = 'http://localhost:4000'; // server socket.io
+const URL = 'http://localhost:5000'; // server socket.io
 
 const io = require('socket.io-client');
 const socket = io(URL);

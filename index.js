@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+module.exports = app;
+
 app.use(express.json()) // for a server to accept json format
 
 app.get('/', (request, response) => {
@@ -67,14 +69,14 @@ app.post('/api/feedback', (request, response) => {
 })
 
 const start = () => {
+    const server = require('./server');
     try {
-        app.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
+        server.http.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
     } catch(e) {
         console.log(e);
     }
 
-    const server = require('./server');
-    server();
+    server.start();
 
 }
 

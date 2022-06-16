@@ -5235,7 +5235,7 @@ manager.Manager = Manager;
 	module.exports = lookup;
 } (cjs$3, cjs$3.exports));
 
-const URL = 'http://localhost:4000'; // server socket.io
+const URL = 'http://localhost:5000'; // server socket.io
 
 const io = cjs$3.exports;
 const socket = io(URL);
