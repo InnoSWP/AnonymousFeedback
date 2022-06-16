@@ -37,6 +37,15 @@ app.get('/dashboard.css', (request, response) => {
 app.get('/dashboard.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.js'));
 })
+app.get('/feedback', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.html'));
+})
+app.get('/feedback.css', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.css'));
+})
+app.get('/feedback.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.js'));
+})
 app.get('/teacher-bundle.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'teacher-bundle.js'));
 })
