@@ -28,7 +28,7 @@ app.get('/login.js', (request, response) => {
 app.get('/login.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.css'));
 })
-app.post('/dashboard', (request, response) => {
+app.get('/dashboard', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.html'));
 })
 app.get('/dashboard.css', (request, response) => {
@@ -36,6 +36,9 @@ app.get('/dashboard.css', (request, response) => {
 })
 app.get('/dashboard.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.js'));
+})
+app.get('/teacher-bundle.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'teacher-bundle.js'));
 })
 
 app.post('/api/codeword', (request, response) => {
