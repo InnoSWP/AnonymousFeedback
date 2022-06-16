@@ -63,6 +63,10 @@ const start = () => {
     } catch(e) {
         console.log(e);
     }
+
+    const server = require('./server');
+    server();
+
 }
 
 start();
