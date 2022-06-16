@@ -5247,10 +5247,14 @@ linkText.value = 'Server is disconnected, sorry';
 socket.on('connect', () => {
     console.log('connected to server');
     const codeword = socket.id;
-
     linkText.value = link+codeword;
+    console.log('Start receiving messages:', linkText.value);
 
-    console.log(linkText.value);
+    socket.on('receive-message', (feedback) => {
+        addMessage(feedback);
+    });
+
+
 });
 
 export { teacherClient as default };
