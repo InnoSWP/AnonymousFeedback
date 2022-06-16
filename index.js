@@ -5,6 +5,8 @@ const PORT = process.env.PORT || 5000;
 
 const app = express();
 
+module.exports = app;
+
 app.use(express.json()) // for a server to accept json format
 
 app.get('/', (request, response) => {
@@ -28,7 +30,7 @@ app.get('/login.js', (request, response) => {
 app.get('/login.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.css'));
 })
-app.post('/dashboard', (request, response) => {
+app.get('/dashboard', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.html'));
 })
 app.get('/dashboard.css', (request, response) => {
@@ -36,6 +38,18 @@ app.get('/dashboard.css', (request, response) => {
 })
 app.get('/dashboard.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.js'));
+})
+app.get('/feedback', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.html'));
+})
+app.get('/feedback.css', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.css'));
+})
+app.get('/feedback-bundle.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback-bundle.js'));
+})
+app.get('/teacher-bundle.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'teacher-bundle.js'));
 })
 
 app.post('/api/codeword', (request, response) => {
@@ -54,13 +68,16 @@ app.post('/api/feedback', (request, response) => {
     response.json({id: id}) // send the id of a created session
 })
 
-
 const start = () => {
+    const server = require('./server');
     try {
-        app.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
+        server.http.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
     } catch(e) {
         console.log(e);
     }
+
+    server.start();
+
 }
 
 start();
