@@ -1,36 +1,35 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-    <link rel="stylesheet" href="feedback.css">
-</head> 
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<title>Feedback</title>
+	<link rel="stylesheet" href="feedback.css">
+</head>
+
 <body>
-    <header>
-	<div id="name">Name</div>
-        <div id="sessionTitle">Session title</div>
-    </header>
-	
-    	<main>
-	<div id="form">	
-		<form>
-			<textarea id="feedbackText"></textarea>
-			<div id="delay">
-				<text>Choose the delay</text>
-				<input type="number" min="0" max="24">
-				<input type="number" min="0" max="60">
-				<input type="number" min="0" max="60">
-			</div>
-			<input type="Submit" value="Submit">
-		</form>
-		<form>
-  			<button>
-				LogOut
-			</button>
-		</form>
-	</div>
-    	</main>
+	<header>
+		<div id="name">Name</div>
+		<div id="sessionTitle">Session title</div>
+	</header>
+
+	<main>
+		<div id="form-div">
+			<form id="form">
+				<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
+				<!-- <div id="delay">
+					<text>Choose the delay</text>
+					<input type="number" min="0" max="24">
+					<input type="number" min="0" max="60">
+					<input type="number" min="0" max="60">
+				</div> -->
+				<input type="Submit" value="Send">
+			</form>
+		</div>
+	</main>
+	<script type="module" src="feedback-bundle.js"></script>
 </body>
+
 </html>
