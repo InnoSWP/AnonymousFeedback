@@ -3,8 +3,6 @@ body {
 
     display: flex;
     flex-direction: column;
-
- 
 }
 
 html, body {
@@ -14,27 +12,39 @@ html, body {
 header{
     flex-basis: 40px;
 
-    border: 1px solid black;
+    border: 1px solid grey;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
     padding: 5px 50px;
-
 }
 
-header button {
-    height: fit-content;   
-    margin-left: 100px;
+#logout-button {
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    line-height: 1.15385;
+    padding: 8px .8em;
 }
 
 #name{
-    margin-right: 100px;
+}
+#session-title {
+    
 }
 
 main {
-    flex-basis: 80%;
+    flex-grow: 1;
 
     border: 1px solid black;
 
@@ -50,9 +60,9 @@ main {
 
 
 
-main div button{
+#new-session-button{
     width: 80%;
-    margin: 2% 10%;
+    margin: 5px auto;
 }
 
 .session {
@@ -69,26 +79,62 @@ main div button{
 footer{
     flex-basis: 40px;
 
-    border: 1px solid black;    
+    border: 1px solid grey;    
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+
 }
 
 footer button {
-    margin-left: 20px;
-    height: fit-content;
+    padding: 10px;
+    margin: 10px 0px 10px 10px;
+
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+    line-height: 1.15385;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    
+}
+#session-link-div {
+    margin: 10px 10px 10 0;
+    padding: 5px 20px;
+    width: 80%;
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+    
 }
 
-footer div {
-    margin-right: 10px;
+#link-field {
+    margin: 5px 0px;
+    width: 100%;
+    display: block;
+    border-radius: 7px;
+    box-shadow: 2px 2px 10px grey; 
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
+#link-label{
+    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-size: 13px;
+    font-weight: 400;
 }
 
-footer input {
-    width: 30em;
-}
 
 .session-header {
     display: flex;
@@ -99,7 +145,7 @@ footer input {
 
 .my_scroll_div{
     overflow-y: auto;
-    max-height: 600px;
+    max-height: calc(100vh - 40px - 40px);
 }
 
 .feedback-item {
