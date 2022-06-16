@@ -1,22 +1,21 @@
 const form = document.getElementById('code-word-form');
 
-form.onsubmit = () => {
-    const codeWord = form.getElementsByTagName('input')[0].value;
+form.addEventListener('submit', (event) => {
+    event.preventDefault();
+    const codeWord = document.getElementById('codeword').value;
     let valid = false;
 
-    //check the presence of the codeWord
-    fetch('/api/codeword', {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            codeword : codeWord
-        })
-    })
-    .then(data => valid = data.text());
+    //check the presence of the codeWord - TODO
+    // fetch('/api/codeword', {
+    //     method: 'POST',
+    //     headers: {
+    //         'Content-Type': 'application/json'
+    //     },
+    //     body: JSON.stringify({
+    //         codeword : codeWord
+    //     })
+    // })
+    // .then(data => valid = data.text());
 
-    console.log(valid);
-
-    return valid;
-}
+    location.href = '/feedback?codeword='+codeWord;
+})
