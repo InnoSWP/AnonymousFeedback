@@ -5,7 +5,8 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
-    "buildTeacher": "rollup --config rollup.configTeacher.js"
+    "buildTeacher": "rollup --config rollup.configTeacher.js",
+    "buildFeedback": "rollup --config rollup.configFeedback.js"
   },
   "repository": {
     "type": "git",
