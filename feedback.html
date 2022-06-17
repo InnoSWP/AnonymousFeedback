@@ -10,15 +10,14 @@
 </head>
 
 <body>
-	<header>
-		<div id="name">Name</div>
-		<div id="sessionTitle">Session title</div>
-	</header>
-
 	<main>
 		<nav id="top-nav">
 			<button id="back-button" onclick="location.href = '/';">Back</button>
 		</nav>
+		<div id="header-div">
+			<div id="name">Name</div>
+			<div id="sessionTitle">Session title</div>
+		</div>
 		<div id="form-div">
 			<form id="form">
 				<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
@@ -28,7 +27,7 @@
 					<input type="number" min="0" max="60">
 					<input type="number" min="0" max="60">
 				</div> -->
-				<input type="Submit" value="Send">
+				<input id="submit-button" type="Submit" value="Send">
 			</form>
 		</div>
 	</main>
