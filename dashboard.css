@@ -5,14 +5,15 @@ body {
     flex-direction: column;
 }
 
-html, body {
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+html,
+body {
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
     height: 100%;
 }
 
-header{
+header {
     flex-basis: 40px;
 
     border: 1px solid grey;
@@ -33,18 +34,16 @@ header{
     color: #39739d;
     cursor: pointer;
     display: inline-block;
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
     line-height: 1.15385;
     padding: 8px .8em;
 }
 
-#name{
-}
-#session-title {
-    
-}
+#name {}
+
+#session-title {}
 
 main {
     flex-grow: 1;
@@ -62,7 +61,7 @@ main {
     box-shadow: 0px 0px 4px rgb(209, 130, 130);
 }
 
-#new-session-button{
+#new-session-button {
     width: 80%;
     margin: 5px 10%;
     background-color: #e1ecf4;
@@ -74,7 +73,7 @@ main {
     cursor: pointer;
     display: inline-block;
     line-height: 1.15385;
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
 }
@@ -89,28 +88,30 @@ main {
     padding: 10px;
     box-sizing: border-box;
 }
+
 .session-content {
 
     margin: auto;
 }
+
 .session-header {
     display: flex;
-  
+
     justify-content: space-between;
 }
 
 
 
-footer{
+footer {
     flex-basis: 40px;
 
-    border: 1px solid grey;    
+    border: 1px solid grey;
 
     display: flex;
     align-items: center;
     justify-content: space-between;
 
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
 
@@ -129,19 +130,20 @@ footer button {
     cursor: pointer;
     display: inline-block;
     line-height: 1.15385;
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
-    
+
 }
+
 #session-link-div {
     margin: 10px 10px 10 0;
     padding: 5px 20px;
     width: 80%;
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
-    
+
 }
 
 #link-field {
@@ -149,22 +151,38 @@ footer button {
     width: 100%;
     display: block;
     border-radius: 7px;
-    box-shadow: 2px 2px 10px grey; 
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-}
-#link-label{
-    font-family: -apple-system,system-ui,"Segoe UI","Liberation Sans",sans-serif;
+    box-shadow: 2px 2px 10px grey;
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
     font-size: 13px;
     font-weight: 400;
 }
 
+#link-label {
+    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
+    font-size: 13px;
+    font-weight: 400;
+}
 
 
-.my_scroll_div{
+
+.my_scroll_div {
     overflow-y: auto;
     height: calc(100vh - 135px);
+}
+
+::-webkit-scrollbar {
+    width: 15px;
+}
+::-webkit-scrollbar-track {
+    background-color: #e4e4e4;
+    border-radius: 100px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 100px;
+    border: 5px solid transparent;
+    background-clip: content-box;
+    background-color: #c46d2f;
 }
 
 .feedback-item {
@@ -191,14 +209,17 @@ footer button {
     #detailed-feedback-div {
         display: none;
     }
+
     #session-list {
         flex-basis: 40%;
     }
 }
+
 @media (max-width: 300px) {
     #detailed-feedback-div {
         display: none;
     }
+
     #session-list {
         display: none;
     }
