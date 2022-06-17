@@ -5,41 +5,37 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Dashboard</title>
     <link rel="stylesheet" href="dashboard.css">
 </head>
 
 <body>
     <header>
         <div id="name">Name</div>
-        <div>Session title</div>
-        <button onclick="location.href = '/';">Log out</button>
+        <div id="session-title">Session title</div>
+        <button id="logout-button" onclick="location.href = '/';">Log out</button>
     </header>
     <main>
-        <!-- <div id="session-list">
-            <div id="1" class="session">
+        <div class="main-block" id="session-list">
+            <div class="session">
                 <div class="session-header">
-                    <span class="session-title">Lab 1</span>
+                    <span class="session-title">Laaa aaa ab 1</span>
                     <span class="session-time">17:49</span>
                 </div>
                 <div class="session-content">
-                    <span>Feedback text here</span>
+                    Feedback text here
                 </div>
             </div>
 
             <button id="new-session-button">Create new session</button>
-        </div> -->
-        <div id="feedback-list" class="my_scroll_div">
-
         </div>
-        <div id="detailed-feedback-div">
-            333
-        </div>
+        <div id="feedback-list" class="main-block my_scroll_div"></div>
+        <div class="main-block" id="detailed-feedback-div"></div>
     </main>
     <footer>
-        <button>Get new link</button>
+        <button>Copy link</button>
         <div id="session-link-div">
-            <label>Link for the choosen session</label>
+            <label id="link-label">Link for the choosen session</label>
             <input id="link-field" type="text" value="">
         </div>
     </footer>
