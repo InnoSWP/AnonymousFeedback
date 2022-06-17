@@ -7,12 +7,28 @@ html,
 body {
     height: 100%;
 }
+#back-button {
+    margin: 5px;
+    background-color: #e1ecf4;
+    border-radius: 3px;
+    border: 1px solid #7aa7c7;
+    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
+    box-sizing: border-box;
+    color: #39739d;
+    cursor: pointer;
+    display: inline-block;
+}
+#form {
+    display: flex;
+    flex-direction: column;
+    height: calc(400px - 55px);
+}
+#input-fields {
+    flex-grow: 1;
+}
 
 #header-div {
     flex-basis: 40px;
-
-    border: 1px solid black;
-
     display: flex;
     justify-content: space-between;
 
@@ -25,6 +41,8 @@ body {
     margin: 10px auto;
 
     height: 120px;
+    max-height: 200px;
+    min-height: 30px;
 
     display: block;
 
@@ -47,9 +65,6 @@ body {
     background-color: aquamarine;
 
     cursor: pointer;
-
-    position: relative;
-    bottom: 0;
 }
 
 main {
