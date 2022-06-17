@@ -5246,18 +5246,28 @@ const form = document.getElementById('form');
 const query = new Proxy(new URLSearchParams(window.location.search), {
   get: (params, prop) => params.get(prop),
 });
-let codeword = query.codeword;
+const codeword = query.codeword;
 
 socket.on('connect', () => {
-    console.log('connected to server');
+  console.log('You are successfully connected');
 });
 
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
-  if(feedbackTextField.value.trim() != ""){console.log(`You sent: "${feedbackTextField.value}" to session with codeword: "${codeword}"`);
-  socket.emit('send-message', codeword, feedbackTextField.value);}
-  feedbackTextField.value = "";
+  if (feedbackTextField.value.trim() != "") {
+    console.log(`You sent: "${feedbackTextField.value}" to session with codeword: "${codeword}"`);
+    socket.emit('send-message', codeword, feedbackTextField.value);
+    feedbackTextField.value = "";
+  }
+  
 });
+
+const nameField = document.getElementById('name');
+const sessionTitleField = document.getElementById('sessionTitle');
+
+fetch('/api/session?codeword='+codeword)
+.then(response => response.json())
+.then(data => {nameField.innerText = data.name; sessionTitleField.innerText = data.title;});
 
 export { feedback as default };

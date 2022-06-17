@@ -9,7 +9,7 @@ const form = document.getElementById('form');
 const query = new Proxy(new URLSearchParams(window.location.search), {
   get: (params, prop) => params.get(prop),
 });
-let codeword = query.codeword;
+const codeword = query.codeword;
 
 socket.on('connect', () => {
   console.log('You are successfully connected');
@@ -25,6 +25,14 @@ form.addEventListener('submit', (event) => {
   }
   
 })
+
+const nameField = document.getElementById('name');
+const sessionTitleField = document.getElementById('sessionTitle');
+
+fetch('/api/session?codeword='+codeword)
+.then(response => response.json())
+.then(data => {nameField.innerText = data.name; sessionTitleField.innerText = data.title});
+
 
 
 
