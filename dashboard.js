@@ -18,7 +18,6 @@ function addMessage(feedback) {
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
-
 document.getElementById('copy-button').addEventListener('click', () => {
     let link = document.getElementById("link-field");
     if (!link.value) return;
@@ -33,9 +32,6 @@ document.getElementById('copy-button').addEventListener('click', () => {
     button.innerText = 'Copied!';
     setTimeout(() => { button.innerText = initialText; }, 1000);
 })
-
-
-
 // const newSessionButton = document.getElementById('new-session-button');
 // newSessionButton.addEventListener('click', async () => {
 //     const title = prompt('Enter the title of a new session', '');
