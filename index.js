@@ -51,7 +51,9 @@ app.get('/feedback-bundle.js', (request, response) => {
 app.get('/teacher-bundle.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'teacher-bundle.js'));
 })
-
+app.get('/notification_sound.mp3', (request, response) => {
+    response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
+})
 app.post('/api/codeword', (request, response) => {
 
     const codeWord = request.body.codeword;s
