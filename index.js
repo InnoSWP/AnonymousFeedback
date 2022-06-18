@@ -45,6 +45,9 @@ app.get('/feedback', (request, response) => {
 app.get('/feedback.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'feedback.css'));
 })
+app.get('/notification_sound.mp3', (request, response) => {
+    response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
+})
 app.get('/feedback-bundle.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'feedback-bundle.js'));
 })

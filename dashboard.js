@@ -1,3 +1,5 @@
+
+const audio = new Audio('notification_sound.mp3');
 function addMessage(feedback) {
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
@@ -11,6 +13,8 @@ function addMessage(feedback) {
                                 ${feedback.text}
                            </div>`;
     console.log(newMessage);
+
+    audio.play();
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
