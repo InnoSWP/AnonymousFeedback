@@ -1,4 +1,3 @@
-
 const audio = new Audio('notification_sound.mp3');
 function addMessage(feedback){
     const feedbackList = document.getElementById('feedback-list');
@@ -18,6 +17,20 @@ function addMessage(feedback){
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
+document.getElementById('copy-button').addEventListener('click', () => {
+    let link = document.getElementById("link-field");
+    if (!link.value) return;
+    link.select();
+    link.setSelectionRange(0, 99999);
+    navigator.clipboard.writeText(link.value);
+    link.setSelectionRange(0, 0);
+    link.blur();
+
+    const button = document.getElementById('copy-button');
+    const initialText = button.innerText;
+    button.innerText = 'Copied!';
+    setTimeout(() => { button.innerText = initialText; }, 1000);
+})
 // const newSessionButton = document.getElementById('new-session-button');
 // newSessionButton.addEventListener('click', async () => {
 //     const title = prompt('Enter the title of a new session', '');
