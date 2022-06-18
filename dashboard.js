@@ -1,3 +1,5 @@
+
+const audio = new Audio('notification_sound.mp3');
 function addMessage(feedback){
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
@@ -12,11 +14,10 @@ function addMessage(feedback){
                            </div>`;
     console.log(newMessage);
 
+    audio.play();
+
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
-
-
-
 // const newSessionButton = document.getElementById('new-session-button');
 // newSessionButton.addEventListener('click', async () => {
 //     const title = prompt('Enter the title of a new session', '');
