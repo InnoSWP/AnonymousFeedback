@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js",
+    "test": "jest",
     "buildTeacher": "rollup --config rollup.configTeacher.js",
     "buildFeedback": "rollup --config rollup.configFeedback.js"
   },
@@ -28,6 +29,7 @@
   "devDependencies": {
     "@rollup/plugin-commonjs": "^22.0.0",
     "@rollup/plugin-node-resolve": "^13.3.0",
+    "jest": "^28.1.1",
     "rollup": "^2.75.6"
   }
 }
