@@ -1,5 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
+const getCodeword = require('./codewordSet');
 module.exports = {
   start: () => {
     const io = require('socket.io')(http, {
@@ -13,6 +14,8 @@ module.exports = {
       if (socket.handshake.auth.id) {
         console.log(`Change from ${socket.id} to ${socket.handshake.auth.id}`)
         socket.id = socket.handshake.auth.id
+      } else {
+        socket.id = getCodeword();
       }
       next();
     })
