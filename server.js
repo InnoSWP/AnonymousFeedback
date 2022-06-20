@@ -5,9 +5,17 @@ module.exports = {
     const io = require('socket.io')(http, {
       cors: {
         origin: '*',
-        methods: ["GET", "POST"]
       }
     });
+
+    io.use((socket, next) => {
+      console.log('Parameters from client:', socket.handshake.auth);
+      if (socket.handshake.auth.id) {
+        console.log(`Change from ${socket.id} to ${socket.handshake.auth.id}`)
+        socket.id = socket.handshake.auth.id
+      }
+      next();
+    })
 
     io.on('connection', socket => {
       // the client emits the send-message event 
