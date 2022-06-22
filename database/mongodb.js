@@ -38,3 +38,5 @@ const runTest = async () => {
 runTest();
 //REMOVE ALL
 Session.remove({}, () => console.log('All documents removed from Session collection'));
+
+export { addFeedback, getFeedback, addSession };
