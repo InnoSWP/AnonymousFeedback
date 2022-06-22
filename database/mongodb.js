@@ -27,10 +27,19 @@ const addFeedback = async (codeword, feedback) => {
     await session.save();
 }
 
+const updateSession = async (codeword, { teacher, title }) => {
+    const session = await Session.findOne({ codeword: codeword });
+    if (teacher) session.teacher = teacher;
+    if (title) session.title = title;
+    await session.save();
+    console.log(`Updated session: ${await Session.findOne({ codeword: codeword })}\n`);
+}
+
 
 //USES
 const runTest = async () => {
     await addSession({ teacher: '1', codeword: "AAB", feedback: [{ text: 'h!' }, { text: 'wowwwwww' }] })
+    await updateSession('AAB', { teacher: 'Ivan', title: "Kek" });
     await addFeedback('AAB', { text: "hiiiiiiii", time: "11:11" })
     getFeedback('AAB');
 }
