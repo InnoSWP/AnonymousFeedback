@@ -1,19 +1,38 @@
 var mongoose = require('mongoose');
 var Schema = mongoose.Schema;
 
-const feedback = {
-    text: String,
-    date: String,
-    time: String
-}
+const feedback = new Schema({
+    text: {
+        type: String,
+        required: true
+    },
+    date: {
+        type: String,
+        default: new Date,
+        required: true
+    },
+    time: {
+        type: String,
+        default: (new Date().getHours()) + ":" + (new Date().getMinutes()),
+        required: true
+    },
+});
 
-var sessionModelSchema = new Schema({
+var sessionSchema = new Schema({
     feedback: [feedback],
-    codeword: String,
+    codeword: {
+        type: String,
+        required: true
+    },
     title: String,
-    teacher: String
+    teacher: String,
+    date: {
+        type: Date,
+        default: new Date(),
+        required: true
+    },
 });
 
 // find the use-case for the model in teacher-client.js
 
-module.exports = mongoose.model("Session", sessionModel);
+module.exports = mongoose.model("Session", sessionSchema);
