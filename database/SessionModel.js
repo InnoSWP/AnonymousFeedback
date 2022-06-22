@@ -24,8 +24,8 @@ var sessionSchema = new Schema({
         type: String,
         required: true
     },
-    title: String,
-    teacher: String,
+    title: { type: String, default: "" },
+    teacher: { type: String, default: "" },
     date: {
         type: Date,
         default: new Date(),

@@ -1,9 +1,11 @@
 const URL = 'http://localhost:5000'; // server socket.io
 
 import { addMessage, copyEvent } from './dashboard';
+import { nameEvent } from './submitTitleName';
+nameEvent();
 copyEvent();
 import { io } from 'socket.io-client';
-const socket = io(URL, {
+export const socket = io(URL, {
     autoConnect: false,
 });
 
@@ -34,7 +36,7 @@ socket.onAny((event, ...args) => {
     console.log(event, args);
 });
 
-function getCookie(name) {
+export function getCookie(name) {
     return document.cookie.split('; ').reduce((r, v) => {
         const parts = v.split('=')
         return parts[0] === name ? decodeURIComponent(parts[1]) : r
