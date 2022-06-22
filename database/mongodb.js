@@ -48,4 +48,4 @@ runTest();
 //REMOVE ALL
 Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession };
+module.exports = { addFeedback, getFeedback, addSession, updateSession };

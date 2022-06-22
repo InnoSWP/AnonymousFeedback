@@ -36,7 +36,8 @@ module.exports = {
         let time = hours + ":" + minutes;
         socket.to(codeword).emit("receive-message", { text: message, time: time }); // emits 
         // message & time to the room of the TA, using the codeword as the ID 
-      })  
+      })
+      socket.on('update-session', (codeword, data) => { console.log(`Codeword: ${codeword} with data: ${JSON.stringify(data)}`) });
     })
   }, http
 }
