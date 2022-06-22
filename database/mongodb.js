@@ -30,7 +30,7 @@ const addFeedback = async (codeword, feedback) => {
 
 //USES
 const runTest = async () => {
-    await addSession({ codeword: "AAB", feedback: [{ text: 'h!' }, { text: 'wowwwwww' }] })
+    await addSession({ teacher: '1', codeword: "AAB", feedback: [{ text: 'h!' }, { text: 'wowwwwww' }] })
     await addFeedback('AAB', { text: "hiiiiiiii", time: "11:11" })
     getFeedback('AAB');
 }
@@ -39,4 +39,4 @@ runTest();
 //REMOVE ALL
 Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-export { addFeedback, getFeedback, addSession };
+module.exports = { addFeedback, getFeedback, addSession };
