@@ -21,8 +21,12 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-between;
+    padding: 5px 5px;
+}
 
-    padding: 5px 50px;
+header input {
+    width: 15ch;
+    border: 0;
 }
 
 #logout-button {
@@ -173,6 +177,7 @@ footer button {
 ::-webkit-scrollbar {
     width: 15px;
 }
+
 ::-webkit-scrollbar-track {
     background-color: #e4e4e4;
     border-radius: 100px;
