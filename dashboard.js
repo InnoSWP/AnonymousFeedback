@@ -1,5 +1,5 @@
 const audio = new Audio('notification_sound.mp3');
-function addMessage(feedback) {
+export function addMessage(feedback) {
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
     newMessage.classList.add('feedback-item');
@@ -18,20 +18,22 @@ function addMessage(feedback) {
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
 
-document.getElementById('copy-button').addEventListener('click', () => {
-    let link = document.getElementById("link-field");
-    if (!link.value) return;
-    link.select();
-    link.setSelectionRange(0, 99999);
-    navigator.clipboard.writeText(link.value);
-    link.setSelectionRange(0, 0);
-    link.blur();
+export const copyEvent = () => {
+    document.getElementById('copy-button').addEventListener('click', () => {
+        let link = document.getElementById("link-field");
+        if (!link.value) return;
+        link.select();
+        link.setSelectionRange(0, 99999);
+        navigator.clipboard.writeText(link.value);
+        link.setSelectionRange(0, 0);
+        link.blur();
 
-    const button = document.getElementById('copy-button');
-    const initialText = button.innerText;
-    button.innerText = 'Copied!';
-    setTimeout(() => { button.innerText = initialText; }, 1000);
-})
+        const button = document.getElementById('copy-button');
+        const initialText = button.innerText;
+        button.innerText = 'Copied!';
+        setTimeout(() => { button.innerText = initialText; }, 1000);
+    })
+}
 
 
 
