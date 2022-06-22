@@ -25,10 +25,18 @@ module.exports = {
       // codeword represents the ID of the TA 
       socket.on('send-message', (codeword, message) => {
         let date = new Date();
-        let time = date.getHours() + ":" + date.getMinutes();
+        let hours = date.getHours().toString();
+        if (hours.length == 1) {
+          hours = "0" + hours;
+        }
+        let minutes = date.getMinutes().toString();
+        if (minutes.length == 1) {
+          minutes = "0" + minutes;
+        }
+        let time = hours + ":" + minutes;
         socket.to(codeword).emit("receive-message", { text: message, time: time }); // emits 
         // message & time to the room of the TA, using the codeword as the ID 
-      })
+      })  
     })
   }, http
 }
