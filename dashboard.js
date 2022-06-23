@@ -5,7 +5,7 @@ export function addMessage(feedback) {
     newMessage.classList.add('feedback-item');
 
     newMessage.innerHTML = `<div class="feedback-item-header">
-                                <div class="feedback-name">AnonGuest</div>
+                                <div class="feedback-name">${feedback.author ? feedback.author : ''}</div>
                                 <div class="feedback-time">${feedback.time}</div>
                             </div>
                             <div class="feedback-content">
