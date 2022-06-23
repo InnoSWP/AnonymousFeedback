@@ -1,8 +1,9 @@
 const URL = 'http://localhost:5000'; // server socket.io
 
 import { addMessage, copyEvent, updateLink } from './dashboard';
-import { nameEvent } from './submitTitleName';
+import { nameEvent, titleEvent } from './submitTitleName';
 nameEvent();
+titleEvent();
 copyEvent();
 import { io } from 'socket.io-client';
 export const socket = io(URL, {
