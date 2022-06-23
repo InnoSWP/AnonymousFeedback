@@ -22,6 +22,7 @@ var sessionSchema = new Schema({
     feedback: [feedback],
     codeword: {
         type: String,
+        unique: true,
         required: true
     },
     title: { type: String, default: "" },
