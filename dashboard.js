@@ -13,7 +13,7 @@ export function addMessage(feedback) {
                            </div>`;
     console.log(newMessage);
 
-    audio.play();
+    audio.play().catch(e => { });
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }

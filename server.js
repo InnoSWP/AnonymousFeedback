@@ -1,6 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const { updateSession, addSession, getSession } = require('./database/mongodb');
+const { updateSession, addSession, getSession, addFeedback } = require('./database/mongodb');
 const getNewCodeword = require('./codewordSet');
 module.exports = {
   start: () => {
@@ -36,20 +36,12 @@ module.exports = {
       if (socket.session) {
         console.log('Init the client with codeword:', socket.session.codeword);
         socket.join(socket.codeword);
-        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedbackList);
+        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback);
       }
 
       socket.on('send-message', (codeword, message) => {
-        let date = new Date();
-        let hours = date.getHours().toString();
-        if (hours.length == 1) {
-          hours = "0" + hours;
-        }
-        let minutes = date.getMinutes().toString();
-        if (minutes.length == 1) {
-          minutes = "0" + minutes;
-        }
-        let time = hours + ":" + minutes;
+        const time = getTime();
+        addFeedback(codeword, { time: time, text: message }); // add to database
         socket.to(codeword).emit("receive-message", { text: message, time: time }); // emits 
         // message & time to the room of the TA, using the codeword as the ID 
       })
@@ -59,4 +51,18 @@ module.exports = {
       });
     })
   }, http
+}
+
+function getTime() {
+  let date = new Date();
+  let hours = date.getHours().toString();
+  if (hours.length == 1) {
+    hours = "0" + hours;
+  }
+  let minutes = date.getMinutes().toString();
+  if (minutes.length == 1) {
+    minutes = "0" + minutes;
+  }
+  let time = hours + ":" + minutes;
+  return time;
 }
