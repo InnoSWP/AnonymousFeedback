@@ -9,8 +9,20 @@ export const nameEvent = () => {
         const name = nameField.value;
         console.log(`New name: ${name}`);
 
-        const codeword = getCookie('token');
-        socket.emit('update-session', codeword, { teacher: name });
+        const teacherID = getCookie('token');
+        socket.emit('update-session', teacherID, { teacher: name });
         nameField.blur();
+    })
+}
+export const titleEvent = () => {
+    document.getElementById('title-form').addEventListener('submit', (e) => {
+        e.preventDefault();
+        const titleField = document.getElementById('session-title');
+        const title = titleField.value;
+        console.log(`New name: ${title}`);
+
+        const teacherID = getCookie('token');
+        socket.emit('update-session', teacherID, { title: title });
+        titleField.blur();
     })
 }
