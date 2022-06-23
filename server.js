@@ -39,7 +39,10 @@ module.exports = {
         io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
       } else if (socket.handshake.auth.codeword) {
         const session = await getSessionByCodeword(socket.handshake.auth.codeword);
-        io.to(socket.id).emit('init', session.teacher, session.title);
+        if (session)
+          io.to(socket.id).emit('init', session.teacher, session.title);
+        else
+          io.to(socket.id).emit('init', "", "");
       }
 
       socket.on('send-message', (codeword, message) => {

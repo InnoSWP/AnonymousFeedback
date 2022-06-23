@@ -24,6 +24,7 @@ const getFeedback = async (codeword) => {
 
 const addFeedback = async (codeword, feedback) => {
     const session = await Session.findOne({ codeword: codeword });
+    if (!session) return;
     const feedbackList = session.feedback;
     feedbackList.push(feedback);
     await session.save();
