@@ -35,6 +35,13 @@ export const copyEvent = () => {
     })
 }
 
+export function updateLink(codeword) {
+    const linkText = document.getElementById('link-field');
+    const link = 'http://localhost:5000/feedback?codeword='; // for student to enter the feedback
+    if (!codeword) linkText.value = 'Server is disconnected, sorry';
+    linkText.value = link + codeword;
+}
+
 
 
 // const newSessionButton = document.getElementById('new-session-button');
