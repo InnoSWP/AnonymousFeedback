@@ -23,6 +23,7 @@ module.exports = {
       }
 
       socket.session = await getSession(socket.id);
+      socket.codeword = socket.session.codeword;
 
       next();
     })
@@ -31,8 +32,10 @@ module.exports = {
       // the client emits the send-message event 
       // codeword represents the ID of the TA 
 
+      // It was a teacher entered dashboard
       if (socket.session) {
         console.log('Init the client with codeword:', socket.session.codeword);
+        socket.join(socket.codeword);
         io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedbackList);
       }
 
