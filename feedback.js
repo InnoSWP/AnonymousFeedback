@@ -1,7 +1,9 @@
 const URL = 'http://localhost:5000'; // server socket.io
 
 const io = require('socket.io-client');
-const socket = io(URL);
+const socket = io(URL, {
+  autoConnect: false,
+});
 
 const feedbackTextField = document.getElementById('feedbackText');
 const form = document.getElementById('form');
@@ -10,9 +12,14 @@ const query = new Proxy(new URLSearchParams(window.location.search), {
   get: (params, prop) => params.get(prop),
 });
 const codeword = query.codeword;
+if (!codeword) document.location.href = '/';
+
+socket.auth = { codeword: codeword };
+socket.connect();
 
 socket.on('connect', () => {
   console.log('You are successfully connected');
+  socket.on('init', (teacher, title) => updateHeader(teacher, title));
 })
 
 form.addEventListener('submit', (event) => {
@@ -23,16 +30,16 @@ form.addEventListener('submit', (event) => {
     socket.emit('send-message', codeword, feedbackTextField.value);
     feedbackTextField.value = "";
   }
-  
+
 })
 
 const nameField = document.getElementById('name');
 const sessionTitleField = document.getElementById('sessionTitle');
 
-fetch('/api/session?codeword='+codeword)
-.then(response => response.json())
-.then(data => {nameField.innerText = data.name; sessionTitleField.innerText = data.title});
-
+function updateHeader(teacher, title) {
+  document.getElementById('name').innerText = teacher;
+  document.getElementById('sessionTitle').innerText = title;
+}
 
 
 

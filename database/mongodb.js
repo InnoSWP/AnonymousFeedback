@@ -41,8 +41,16 @@ const getSession = async (teacherID) => {
     try {
         session = await Session.findOne({ teacherID: teacherID });
     } catch (e) {
-        console.log('Session was not found probably:', e)
-        session = await addSession({ teacherID: teacherID, codeword: getNewCodeword });
+        console.log('Session was not found probably:', e);
+    }
+    return session;
+}
+const getSessionByCodeword = async (codeword) => {
+    let session;
+    try {
+        session = await Session.findOne({ codeword: codeword });
+    } catch (e) {
+        console.log('Session by codeword was not found probably:', e);
     }
     return session;
 }
@@ -59,4 +67,4 @@ const runTest = async () => {
 //REMOVE ALL
 // Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession };
+module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword };

@@ -1,6 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const { updateSession, addSession, getSession, addFeedback } = require('./database/mongodb');
+const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword } = require('./database/mongodb');
 const getNewCodeword = require('./codewordSet');
 module.exports = {
   start: () => {
@@ -28,7 +28,7 @@ module.exports = {
       next();
     })
 
-    io.on('connection', socket => {
+    io.on('connection', async socket => {
       // the client emits the send-message event 
       // codeword represents the ID of the TA 
 
@@ -37,6 +37,9 @@ module.exports = {
         console.log('Init the client with codeword:', socket.session.codeword);
         socket.join(socket.codeword);
         io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
+      } else if (socket.handshake.auth.codeword) {
+        const session = await getSessionByCodeword(socket.handshake.auth.codeword);
+        io.to(socket.id).emit('init', session.teacher, session.title);
       }
 
       socket.on('send-message', (codeword, message) => {
