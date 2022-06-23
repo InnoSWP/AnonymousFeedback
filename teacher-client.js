@@ -25,8 +25,9 @@ socket.on('connect', () => {
         addMessage(feedback);
     })
 
-    socket.on('init', (codeword, messages) => {
+    socket.on('init', (codeword, messages, teacher, title) => {
         console.log('Init from server:', codeword, messages)
+        updateHeader(teacher, title);
         updateLink(codeword);
         if (messages) messages.forEach(feedback => addMessage(feedback));
     })
@@ -40,4 +41,9 @@ export function getCookie(name) {
         const parts = v.split('=')
         return parts[0] === name ? decodeURIComponent(parts[1]) : r
     }, '')
+}
+
+function updateHeader(teacher, title) {
+    document.getElementById('session-title').value = title;
+    document.getElementById('name').value = teacher;
 }

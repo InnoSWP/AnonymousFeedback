@@ -36,7 +36,7 @@ module.exports = {
       if (socket.session) {
         console.log('Init the client with codeword:', socket.session.codeword);
         socket.join(socket.codeword);
-        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback);
+        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
       }
 
       socket.on('send-message', (codeword, message) => {
