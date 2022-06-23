@@ -1,7 +1,7 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const getCodeword = require('./codewordSet');
-const { updateSession, addSession } = require('./database/mongodb');
+const { updateSession, addSession, getSession } = require('./database/mongodb');
+const getNewCodeword = require('./codewordSet');
 module.exports = {
   start: () => {
     const io = require('socket.io')(http, {
@@ -11,21 +11,31 @@ module.exports = {
     });
 
     io.use(async (socket, next) => {
+      //For dashbord initialization
       if (!socket.request.headers.referer.includes('/dashboard')) { next(); return };
+
       console.log('Parameters from client:', socket.handshake.auth);
       if (socket.handshake.auth.id) {
         console.log(`Change from ${socket.id} to ${socket.handshake.auth.id}`)
         socket.id = socket.handshake.auth.id
       } else {
-        socket.id = getCodeword();
-        await addSession({ codeword: socket.id });
+        await addSession({ teacherID: socket.id, codeword: getNewCodeword() });
       }
+
+      socket.session = await getSession(socket.id);
+
       next();
     })
 
     io.on('connection', socket => {
       // the client emits the send-message event 
       // codeword represents the ID of the TA 
+
+      if (socket.session) {
+        console.log('Init the client with codeword:', socket.session.codeword);
+        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedbackList);
+      }
+
       socket.on('send-message', (codeword, message) => {
         let date = new Date();
         let hours = date.getHours().toString();
