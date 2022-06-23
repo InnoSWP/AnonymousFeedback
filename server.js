@@ -11,6 +11,7 @@ module.exports = {
     });
 
     io.use(async (socket, next) => {
+      if (!socket.request.headers.referer.includes('/dashboard')) { next(); return };
       console.log('Parameters from client:', socket.handshake.auth);
       if (socket.handshake.auth.id) {
         console.log(`Change from ${socket.id} to ${socket.handshake.auth.id}`)
