@@ -1,3 +1,5 @@
+import { host } from "./static/constants";
+
 const audio = new Audio('notification_sound.mp3');
 export function addMessage(feedback) {
     const feedbackList = document.getElementById('feedback-list');
@@ -37,7 +39,7 @@ export const copyEvent = () => {
 
 export function updateLink(codeword) {
     const linkText = document.getElementById('link-field');
-    const link = 'http://localhost:5000/feedback?codeword='; // for student to enter the feedback
+    const link = 'http://' + host + '/feedback?codeword='; // for student to enter the feedback
     if (!codeword) linkText.value = 'Server is disconnected, sorry';
     linkText.value = link + codeword;
 }

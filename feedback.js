@@ -1,6 +1,6 @@
-const URL = 'http://localhost:5000'; // server socket.io
-
 const io = require('socket.io-client');
+const { host } = require('./static/constants');
+const URL = 'http://' + host; // server socket.io
 const socket = io(URL, {
   autoConnect: false,
 });
