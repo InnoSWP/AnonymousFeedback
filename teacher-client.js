@@ -1,5 +1,3 @@
-const URL = 'http://localhost:5000'; // server socket.io
-
 import { addMessage, copyEvent, updateLink } from './dashboard';
 import { nameEvent, titleEvent } from './submitTitleName';
 import { resetEvent } from './scripts/resetGuest';
@@ -10,6 +8,8 @@ nameEvent();
 titleEvent();
 copyEvent();
 import { io } from 'socket.io-client';
+import { host } from './static/constants';
+const URL = 'http://' + host; // server socket.io
 export const socket = io(URL, {
     autoConnect: false,
 });
