@@ -2,6 +2,10 @@ const URL = 'http://localhost:5000'; // server socket.io
 
 import { addMessage, copyEvent, updateLink } from './dashboard';
 import { nameEvent, titleEvent } from './submitTitleName';
+import { resetEvent } from './scripts/resetGuest';
+import { formEvent } from './scripts/confirmForm';
+formEvent();
+resetEvent();
 nameEvent();
 titleEvent();
 copyEvent();
