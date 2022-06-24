@@ -45,18 +45,18 @@ app.get('/feedback', (request, response) => {
 app.get('/feedback.css', (request, response) => {
     response.sendFile(path.join(__dirname, 'feedback.css'));
 })
-app.get('/feedback-bundle.js', (request, response) => {
-    response.sendFile(path.join(__dirname, 'feedback-bundle.js'));
+app.get('/feedback.bundle.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'feedback.bundle.js'));
 })
-app.get('/teacher-bundle.js', (request, response) => {
-    response.sendFile(path.join(__dirname, 'teacher-bundle.js'));
+app.get('/teacher.bundle.js', (request, response) => {
+    response.sendFile(path.join(__dirname, 'teacher.bundle.js'));
 })
 app.get('/notification_sound.mp3', (request, response) => {
     response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
 })
 app.post('/api/codeword', (request, response) => {
 
-    const codeWord = request.body.codeword;s
+    const codeWord = request.body.codeword; s
     console.log(codeWord);
 
     //NEED LOGIC TO SEND flag whether codeword is in DB or not
@@ -67,14 +67,14 @@ app.post('/api/feedback', (request, response) => {
     //LOGIC WITH CREATING A NEW SESSION FOR USER WITH TOKEN IN COOKIES IN DATABASE
 
     const id = 1311;
-    response.json({id: id}) // send the id of a created session
+    response.json({ id: id }) // send the id of a created session
 })
 
 const start = () => {
     const server = require('./server');
     try {
-        server.http.listen(PORT, () => {console.log(`Server started on port:${PORT}`)});
-    } catch(e) {
+        server.http.listen(PORT, () => { console.log(`Server started on port:${PORT}`) });
+    } catch (e) {
         console.log(e);
     }
 
