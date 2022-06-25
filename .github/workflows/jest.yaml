@@ -1,0 +1,19 @@
+name: Jest Tests
+
+on:
+  push:
+    branches-ignore: [main]
+    # Remove the line above to run when pushing to master
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    name: Jest Unit Testing
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout Code
+    - uses: actions/checkout@v1
+    - name: Run Jest
+      uses: stefanoeb/jest-action@1.0.3
