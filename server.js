@@ -55,6 +55,11 @@ module.exports = {
         console.log(`Codeword: ${codeword} with data: ${JSON.stringify(data)}`);
         updateSession(codeword, data);
       });
+
+      socket.on('remove-session', (codeword) => {
+        console.log(`Deleting session with codeword: ${codeword}`);
+        removeSession(codeword);
+      });
     })
   }, http
 }
