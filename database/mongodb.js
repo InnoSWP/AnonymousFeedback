@@ -16,6 +16,14 @@ const addSession = async (sessionInfo) => {
     return session;
 }
 
+const removeSession = async (codeword) => {
+    const session = await Session.findOne({ codeword: codeword });
+    if (!session) return;
+
+    await Session.deleteOne(session).then(() => { console.log('Session Deleted Successfully') })
+        .catch(e => { console.log(e) }); 
+}
+
 const getFeedback = async (codeword) => {
     const session = await Session.findOne({ codeword: codeword });
     console.log(`Return array for code: ${codeword}: ${session.feedback}`);
