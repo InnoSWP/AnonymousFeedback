@@ -9,6 +9,10 @@ export const formEvent = () => {
         console.log('YES pressed');
         form.style.display = 'none';
         document.cookie = "token=expired; expires=Sat, 20 Jan 1980 12:00:00 UTC";
+
+        const teacherID = getCookie('token');
+        socket.emit('remove-session', teacherID);
+
         location.reload();
     })
     btnNO.addEventListener('click', (event) => {
