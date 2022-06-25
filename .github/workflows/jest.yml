@@ -2,7 +2,7 @@ name: Jest Tests
 
 on:
   push:
-    branches-ignore: []
+    branches: [main]
     # Remove the line above to run when pushing to master
   pull_request:
     branches: [main]
@@ -14,7 +14,8 @@ jobs:
 
     steps:
     - name: Checkout Code
-    - uses: actions/checkout@v1
-    - name: Run Jest
-    - uses: stefanoeb/jest-action@1.0.3
+    - uses: actions/checkout@v2 
+    - name: Run Jest  
+    uses: actions/setup-node@v1
+    # - uses: stefanoeb/jest-action@1.0.3
     - run: npm test
