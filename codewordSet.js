@@ -18,8 +18,8 @@ const getNewCodeword = () => {
     };
     codewordSet.add(newCodeword);
 
-    console.log(codewordSet);
+    //console.log(codewordSet);
     return newCodeword;
 }
 
-module.exports = getNewCodeword;
+module.exports = { getNewCodeword, codewordSet, generateNewCodeword };
