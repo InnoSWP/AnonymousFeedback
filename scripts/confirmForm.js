@@ -10,8 +10,9 @@ export const formEvent = () => {
         form.style.display = 'none';
         document.cookie = "token=expired; expires=Sat, 20 Jan 1980 12:00:00 UTC";
 
-        const teacherID = getCookie('token');
-        socket.emit('remove-session', teacherID);
+        const linkText = document.getElementById('link-field');
+        const codeword = linkText.substr(linkText.indexOf('='));
+        socket.emit('remove-session', codeword);
 
         location.reload();
     })
