@@ -1,4 +1,5 @@
 const form = document.getElementById('confirm-form');
+import { socket } from '../teacher-client';
 
 export const formEvent = () => {
     form.addEventListener('click', (e) => e.stopPropagation()); // to avoid exiting by click on form
@@ -10,9 +11,7 @@ export const formEvent = () => {
         form.style.display = 'none';
         document.cookie = "token=expired; expires=Sat, 20 Jan 1980 12:00:00 UTC";
 
-        const linkText = document.getElementById('link-field');
-        const codeword = linkText.substr(linkText.indexOf('='));
-        socket.emit('remove-session', codeword);
+        socket.emit('remove-session');
 
         location.reload();
     })
