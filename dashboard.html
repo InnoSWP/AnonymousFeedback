@@ -11,9 +11,13 @@
 
 <body>
     <header>
-        <form id="name-form"><input type="text" id="name" placeholder="Name"></form>
-        <form id="title-form"><input type="text" id="session-title" placeholder="Title"></form>
-        <button id="logout-button" onclick="location.href = '/';">Log out</button>
+        <form id="name-form"><input type="text" id="name" placeholder="Enter name"></form>
+        <form id="title-form"><input type="text" id="session-title" placeholder="Enter title"></form>
+        <nav>
+            <button id="reset-button">New session</button>
+            <button id="back-button" onclick="location.href = '/';">Back</button>
+            <button id="export-button">Export</button>
+        </nav>
     </header>
     <main>
         <div id="confirm-form">
@@ -21,21 +25,7 @@
             <button class="confirm-button">Yes</button>
             <button class="confirm-button">No</button>
         </div>
-        <!-- <div class="main-block" id="session-list">
-            <div class="session">
-                <div class="session-header">
-                    <span class="session-title">Laaa aaa ab 1</span>
-                    <span class="session-time">17:49</span>
-                </div>
-                <div class="session-content">
-                    Feedback text here
-                </div>
-            </div>
-
-            <button id="new-session-button">Create new session</button>
-        </div> -->
         <div id="feedback-list" class="main-block my_scroll_div"></div>
-        <!-- <div class="main-block" id="detailed-feedback-div"></div> -->
     </main>
     <footer>
         <button id="copy-button">Copy link</button>
@@ -43,9 +33,21 @@
             <label id="link-label">Link for the choosen session</label>
             <input id="link-field" type="text" value="">
         </div>
-        <button id="reset-button">Reset guest</button>
     </footer>
     <script type="module" src="/teacher.bundle.js"></script>
+    <script>
+        const $name = document.getElementById('name');
+        $name.addEventListener('change', (event) => {
+            console.log(event.target.value)
+            $name.style.width = event.target.value.length / 2 + "ch";
+        })
+        const $title = document.getElementById('session-title');
+        $title.addEventListener('change', (event) => {
+            console.log(event.target.value)
+            $title.style.width = event.target.value.length + "ch";
+        })
+
+    </script>
 </body>
 
 </html>
