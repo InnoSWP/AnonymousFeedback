@@ -16,11 +16,11 @@ const addSession = async (sessionInfo) => {
     return session;
 }
 
-const removeSession = async (codeword) => {
-    const session = await Session.findOne({ codeword: codeword });
+const removeSession = async (teacherID) => {
+    const session = await Session.findOne({ teacherID: teacherID });
     if (!session) return;
 
-    await Session.deleteOne(session).then(() => { console.log('Session Deleted Successfully') })
+    await Session.deleteOne(session).then(() => { console.log('Session Deleted from database Successfully') })
         .catch(e => { console.log(e) }); 
 }
 
@@ -76,4 +76,4 @@ const runTest = async () => {
 //REMOVE ALL
 // Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword };
+module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession };

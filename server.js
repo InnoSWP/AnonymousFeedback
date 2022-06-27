@@ -1,6 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword } = require('./database/mongodb');
+const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession } = require('./database/mongodb');
 const getNewCodeword = require('./codewordSet');
 module.exports = {
   start: () => {
@@ -56,9 +56,9 @@ module.exports = {
         updateSession(codeword, data);
       });
 
-      socket.on('remove-session', (codeword) => {
-        console.log(`Deleting session with codeword: ${codeword}`);
-        removeSession(codeword);
+      socket.on('remove-session', () => {
+        console.log(`Deleting session from database`);
+        removeSession();
       });
     })
   }, http
