@@ -22,17 +22,18 @@
     <main>
         <div id="confirm-form">
             <div class="confirm-message">All the messages will dissappear<br>Are you sure to continue?</div>
-            <button class="confirm-button">Yes</button>
-            <button class="confirm-button">No</button>
+            <div><button class="confirm-button">Yes</button>
+                <button class="confirm-button">No</button>
+            </div>
         </div>
         <div id="feedback-list" class="main-block my_scroll_div"></div>
     </main>
     <footer>
-        <button id="copy-button">Copy link</button>
-        <div id="session-link-div">
-            <label id="link-label">Link for the choosen session</label>
-            <input id="link-field" type="text" value="">
+        <div id="label-link-div">
+            <div id="link-label">Share the link to collect feedback</div>
+            <button id="copy-button">Copy link</button>
         </div>
+        <input id="link-field" type="text" value="">
     </footer>
     <script type="module" src="/teacher.bundle.js"></script>
     <script>
@@ -46,6 +47,13 @@
             console.log(event.target.value)
             $title.style.width = event.target.value.length + "ch";
         })
+        const $link = document.getElementById('link-field');
+        $link.addEventListener('change', (event) => {
+            console.log(event.target.value)
+            $link.style.width = event.target.value.length + "ch";
+        })
+        $link.value = "https://innofeedback.herokuapp.com/feedback/codeword/1235"
+
 
     </script>
 </body>
