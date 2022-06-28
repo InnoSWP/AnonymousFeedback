@@ -7,6 +7,22 @@ html,
 body {
     height: 100%;
 }
+
+#form{
+    margin-top:auto;
+    margin-bottom:5%;
+    height: calc(400px - 200px);
+    backgroung-color:#42AAFF;
+}
+label > input {
+    visibility: hidden;
+    position: absolute;
+}
+.previous{
+    display: flex;
+    justify-content: space-between;
+    background-color:#7d7f7d;
+}
 #back-button {
     margin: 5px;
     background-color: #e1ecf4;
@@ -18,10 +34,9 @@ body {
     cursor: pointer;
     display: inline-block;
 }
-#form {
+#feedback {
     display: flex;
     flex-direction: column;
-    height: calc(400px - 55px);
 }
 #input-fields {
     flex-grow: 1;
@@ -36,7 +51,7 @@ body {
 }
 
 #feedbackText {
-    resize: vertical;
+    resize: none;
     width: 90%;
     margin: 10px auto;
 
@@ -53,9 +68,16 @@ body {
     border-radius: 8px;
 }
 
-label > input {
-    visibility: hidden;
-    position: absolute;
+#delay{
+    max-width: 70px;
+    margin-right: auto;
+    margin-left: 5;
+}
+
+#send{
+    max-width: 70px;
+    margin-left: auto;
+    margin-right: 5;
 }
 
 #submit-button {

@@ -10,7 +10,12 @@
 </head>
 
 <body>
-	<main>
+	<main>	
+		<div id="header-div">
+			<div id="codeword">QWE</div>
+			<div id="name">Name</div>
+			<div id="sessionTitle">Session title</div>
+		</div>
 		<div id="previous-feedback">
 			<div class="previous">
 				<div class="smile">&#128513</div>
@@ -28,29 +33,28 @@
 				<div class="prevTime">11:00</div>	
 			</div>
 		</div>
-		<form id="feedback">
-			<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
-			<div id="smilesArea">
-				<label>
-					<input type="radio" name="grade" value="1"> &#128513; 
-					<input type="radio" name="grade" value="2"> &#128578;
-					<input type="radio" name="grade" value="3" checked> &#128528;
-					<input type="radio" name="grade" value="4"> &#9785;
-					<input type="radio" name="grade" value="5"> &#128534;
-				</label>
-			</div>
-			<select id="Delay">
-				<option value=”0”>0 sec</option>
-				<option value=”5”>5 sec</option>
-				<option value=”30”>30 sec</option>
-				<option value=”60”>1 min</option>
-				<option value=”600”>10 min</option>
-			</select>
-			<input type="submit" text="Send">
-		</form>
-		<div id="sessionInfo">
-			<div id="name">Name</div>
-			<div id="sessionTitle">Session title</div>
+		<div id="form">
+			<form id="feedback">
+				<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
+				<div id="smilesArea">
+					<label>
+						<input type="radio" name="grade" value="1"> &#128513; 
+						<input type="radio" name="grade" value="2"> &#128578;
+						<input type="radio" name="grade" value="3" checked> &#128528;
+						<input type="radio" name="grade" value="4"> &#9785;
+						<input type="radio" name="grade" value="5"> &#128534;
+					</label>
+				</div>
+				<select id="delay">
+					<option value=”0”>0 sec</option>
+					<option value=”5”>5 sec</option>
+					<option value=”30”>30 sec</option>
+					<option value=”60”>1 min</option>
+					<option value=”600”>10 min</option>
+				</select>
+				<input id="send" type="submit" value="Send">
+			</form>
+			<button id="back-button" onclick="location.href = '/';">Back</button>
 		</div>
 	</main>
 	<script type="module" src="feedback.bundle.js"></script>
