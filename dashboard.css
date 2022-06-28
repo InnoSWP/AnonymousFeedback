@@ -21,11 +21,12 @@ button {
     text-transform: uppercase;
     box-sizing: border-box;
     transition-duration: 0.2s;
+    font-size: 16px;
 }
 
 button:hover {
     text-shadow: 0 0px 0.5px grey;
-    box-shadow: 1px 1px 5px #252524;
+    box-shadow: 1px 1px 10px #252524;
 }
 
 nav {
@@ -33,6 +34,11 @@ nav {
     align-items: center;
     flex-wrap: wrap;
     justify-content: center;
+    margin: 0 15px;
+}
+
+form {
+    margin: 0 15px;
 }
 
 header {
@@ -40,13 +46,17 @@ header {
     display: flex;
     align-items: center;
     justify-content: space-around;
-    background-color: #22a075;
+    background-color: #CBDEDD;
     line-height: 48px;
     letter-spacing: 0;
     font-family: DM Mono, serif;
     font-size: 17px;
     font-weight: 500;
     color: #252524;
+}
+
+form {
+    display: flex;
 }
 
 header input[type=text] {
@@ -57,6 +67,7 @@ header input[type=text] {
     background-color: transparent;
     margin: 5px;
     outline: none;
+    font-size: 18px;
 }
 
 header input[type=text]::placeholder {
@@ -126,7 +137,8 @@ main {
 }
 
 footer {
-    background-color: #22a075;
+    background-color: #CBDEDD;
+    font-size: 18px;
 }
 
 #link-field {
@@ -206,6 +218,7 @@ footer {
     height: 100%;
     flex-grow: 1;
     word-break: break-all;
+    font-size: 22px;
 }
 
 .feedback-time {
