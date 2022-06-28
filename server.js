@@ -56,9 +56,9 @@ module.exports = {
         updateSession(codeword, data);
       });
 
-      socket.on('remove-session', () => {
-        console.log(`Deleting session from database`);
-        removeSession();
+      socket.on('remove-session', (teacherID) => {
+        console.log(`Deleting session from database with teacherID: ${teacherID}`);
+        removeSession(teacherID);
       });
     })
   }, http
