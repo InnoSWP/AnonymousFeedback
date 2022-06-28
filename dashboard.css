@@ -1,264 +1,257 @@
 body {
     margin: 0;
-
     display: flex;
     flex-direction: column;
 }
 
 html,
 body {
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
     height: 100%;
 }
 
-header {
-    flex-basis: 40px;
+button {
+    border: 0;
+    box-shadow: 1px 1px 3px #252524;
+    display: inline-block;
+    cursor: pointer;
+    padding: 5px;
+    margin: 3px;
+    color: #252524;
+    background-color: transparent;
+    text-transform: uppercase;
+    box-sizing: border-box;
+    transition-duration: 0.2s;
+    font-size: 16px;
+}
 
-    border: 1px solid grey;
+button:hover {
+    text-shadow: 0 0px 0.5px grey;
+    box-shadow: 1px 1px 10px #252524;
+}
 
+nav {
     display: flex;
     align-items: center;
-    justify-content: space-between;
-    padding: 5px 5px;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 0 15px;
 }
 
-header input {
-    width: 15ch;
-    border: 0;
+form {
+    margin: 0 15px;
 }
 
-#logout-button {
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-    box-sizing: border-box;
-    color: #39739d;
-    cursor: pointer;
-    display: inline-block;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    line-height: 1.15385;
-    padding: 8px .8em;
+header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-around;
+    background-color: #CBDEDD;
+    line-height: 48px;
+    letter-spacing: 0;
+    font-family: DM Mono, serif;
+    font-size: 17px;
+    font-weight: 500;
+    color: #252524;
 }
 
-#name {}
-
-#session-title {}
-
-main {
-    flex-grow: 1;
-
-    border: 1px solid black;
-
+form {
     display: flex;
 }
 
-.main-block {
-    flex-basis: 100%;
-    border: 2px solid grey;
-    border-radius: 10px;
+header input[type=text] {
+    width: 10ch;
+    min-width: 10ch;
+    padding: 0;
+    border: 0;
+    background-color: transparent;
     margin: 5px;
-    box-shadow: 0px 0px 4px rgb(209, 130, 130);
+    outline: none;
+    font-size: 18px;
+}
+
+header input[type=text]::placeholder {
+    border: 0;
+    color: #004434;
+    font-style: italic;
+    background-color: transparent;
+}
+
+header input:focus {
+    border: 1px;
+    border-radius: 0;
+    border-width: 0;
+
+}
+
+main {
+    height: 100%;
+    flex-grow: 1;
+    display: flex;
+    background-color: #f6f7ff;
+    justify-content: center;
 }
 
 #confirm-form {
-    background-color: lightcyan;
+    background-color: #f6f7ff;
     display: none;
-    width: 200px;
-    height: 100px;
+    flex-direction: column;
+    width: 300px;
+    height: 200px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border: 3px solid grey;
-    border-radius: 5px;
+    box-shadow: 1px 1px 10px grey;
+    border-radius: 4px;
     text-align: center;
+    justify-content: center;
+}
+
+.confirm-button {
+    box-shadow: 1px 1px 10px grey;
+    width: 40%;
+    border: 0;
+    margin-bottom: 10px;
+}
+
+.confirm-button:hover {
+    opacity: 0.8;
+    text-shadow: 0px 0px 1px grey;
 }
 
 .confirm-button:first-of-type {
-    background-color: red;
+    background-color: #ff6666;
 }
 
 .confirm-button:nth-of-type(2) {
-    background-color: greenyellow;
+    background-color: #99ff99;
 }
 
 .confirm-message {
-    padding: 10px;
-}
-
-#new-session-button {
-    width: 80%;
-    margin: 5px 10%;
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-    box-sizing: border-box;
-    color: #39739d;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 1.15385;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-}
-
-.session {
-    width: 80%;
-    margin: 10px auto;
-    border: 1px solid grey;
-    border-radius: 10px;
-    box-shadow: 0px 0px 3px grey;
-
-    padding: 10px;
-    box-sizing: border-box;
-}
-
-.session-content {
-
-    margin: auto;
-}
-
-.session-header {
     display: flex;
-
-    justify-content: space-between;
+    flex-direction: column;
+    justify-content: space-evenly;
+    flex-grow: 1;
+    padding: 10px;
 }
-
-
 
 footer {
-    flex-basis: 40px;
-
-    border: 1px solid grey;
-
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-
-}
-
-footer button {
-    padding: 10px;
-    margin: 10px 0px 10px 10px;
-
-    background-color: #e1ecf4;
-    border-radius: 3px;
-    border: 1px solid #7aa7c7;
-    box-shadow: rgba(255, 255, 255, .7) 0 1px 0 0 inset;
-    box-sizing: border-box;
-    color: #39739d;
-    cursor: pointer;
-    display: inline-block;
-    line-height: 1.15385;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-}
-
-#reset-button {
-    color: lightskyblue;
-    background-color: #004434;
-    margin: 0;
-    margin-right: 5px;
-}
-
-#session-link-div {
-    margin: 5px;
-    padding: 5px;
-    width: 80%;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
-    box-sizing: border-box;
+    background-color: #CBDEDD;
+    font-size: 18px;
 }
 
 #link-field {
-    width: 100%;
     display: block;
-    border-radius: 7px;
-    padding: 0 5px;
-    margin-top: 5px;
-    box-shadow: 2px 2px 10px grey;
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
+    border-width: 0;
+    width: 100vw;
+    background-color: transparent;
+    margin: auto;
+    padding: 2px;
+    box-sizing: border-box;
+    outline: none;
+    text-align: center;
+}
+
+#label-link-div {
+    display: block;
+    align-items: center;
+    text-align: center;
 }
 
 #link-label {
-    font-family: -apple-system, system-ui, "Segoe UI", "Liberation Sans", sans-serif;
-    font-size: 13px;
-    font-weight: 400;
+    display: inline-block;
+    text-align: center;
+    flex-grow: 1;
+    box-sizing: border-box;
+    margin: 5px;
+    padding: 5px;
 }
-
-
 
 .my_scroll_div {
     overflow-y: auto;
     height: calc(100vh - 135px);
 }
 
-::-webkit-scrollbar {
-    width: 15px;
+#feedback-list {
+    min-height: 100%;
+    flex-grow: 1;
+    display: block;
+    padding: 5px;
+    width: 80%;
+    max-width: 550px;
+    align-items: center;
+    box-sizing: border-box;
+    overflow-y: auto;
+    overflow-x: hidden;
+    margin: 0;
 }
 
-::-webkit-scrollbar-track {
-    background-color: #e4e4e4;
-    border-radius: 100px;
+@media (max-width: 550px) {
+    #feedback-list {
+        width: 100%;
+    }
 }
 
-::-webkit-scrollbar-thumb {
-    border-radius: 100px;
-    border: 5px solid transparent;
-    background-clip: content-box;
-    background-color: #c46d2f;
+@media (min-width: 800px) {
+    header {
+        justify-content: center;
+    }
 }
 
 .feedback-item {
-    width: 80%;
-    margin: 5px auto;
-    border: 2px solid indigo;
-    border-radius: 7px;
-    padding: 7px;
-    box-shadow: 0px 0px 2px yellow;
-}
-
-.feedback-item-header {
+    margin: 5px;
+    border-radius: 2px;
+    padding: 5px 5px 5px 0;
+    box-sizing: border-box;
+    box-shadow: 2px 1px 5px grey;
+    transition: all .25s ease-in-out;
     display: flex;
-    justify-content: space-between;
-    margin-bottom: 5px;
 }
 
-.feedback-content {
-    width: 100%;
-    word-wrap: break-word;
+.feedback-item:hover {
+    box-shadow: 2px 1px 5px black;
 }
 
-@media (max-width: 600px) {
-    #detailed-feedback-div {
-        display: none;
-    }
-
-    #session-list {
-        flex-basis: 40%;
-    }
+.feedback-text {
+    text-align: justify;
+    height: 100%;
+    flex-grow: 1;
+    word-break: break-all;
+    font-size: 22px;
+    flex-shrink: 1;
 }
 
-@media (max-width: 300px) {
-    #detailed-feedback-div {
-        display: none;
-    }
+.feedback-time {
+    flex-basis: 5em;
+    text-align: right;
+    margin: 0 5px;
+}
 
-    #session-list {
-        display: none;
-    }
+#feedback-list::-webkit-scrollbar {
+    width: 5px;
+
+    background-color: transparent;
+    width: 16px;
+}
+
+#feedback-list::-webkit-scrollbar-track {
+    margin: 5px 0;
+    background-color: transparent;
+}
+
+#feedback-list::-webkit-scrollbar-thumb {
+    border-radius: 2px;
+    border: 0;
+    background-clip: content-box;
+    background-color: transparent;
+    text-shadow: 0px 0px 5px black;
+
+    background-color: #babac0;
+    border-radius: 16px;
+    border: 4px solid transparent;
+}
+
+#feedback-list::-webkit-scrollbar-button {
+    display: none;
 }

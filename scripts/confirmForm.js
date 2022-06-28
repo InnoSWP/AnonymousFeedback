@@ -26,5 +26,5 @@ export const formEvent = () => {
 }
 
 export const confirm = () => {
-    form.style.display = 'block';
+    form.style.display = 'flex';
 }
