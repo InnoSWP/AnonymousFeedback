@@ -219,13 +219,13 @@ footer {
     flex-grow: 1;
     word-break: break-all;
     font-size: 22px;
+    flex-shrink: 1;
 }
 
 .feedback-time {
-    flex-basis: 12em;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-basis: 5em;
+    text-align: right;
+    margin: 0 5px;
 }
 
 #feedback-list::-webkit-scrollbar {
