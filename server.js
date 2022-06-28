@@ -1,7 +1,7 @@
 const app = require('./index');
 const http = require('http').createServer(app);
 const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword } = require('./database/mongodb');
-const getNewCodeword = require('./codewordSet');
+const { getNewCodeword } = require('./codewordSet');
 module.exports = {
   start: () => {
     const io = require('socket.io')(http, {
