@@ -1,5 +1,5 @@
 const form = document.getElementById('confirm-form');
-import { socket } from '../teacher-client';
+import { getCookie, socket } from '../teacher-client';
 
 export const formEvent = () => {
     form.addEventListener('click', (e) => e.stopPropagation()); // to avoid exiting by click on form
@@ -9,10 +9,9 @@ export const formEvent = () => {
     btnYES.addEventListener('click', (event) => {
         console.log('YES pressed');
         form.style.display = 'none';
+        const teacherID = getCookie('token');
         document.cookie = "token=expired; expires=Sat, 20 Jan 1980 12:00:00 UTC";
-
-        socket.emit('remove-session');
-
+        socket.emit('remove-session', teacherID);
         location.reload();
     })
     btnNO.addEventListener('click', (event) => {
