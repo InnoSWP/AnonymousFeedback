@@ -53,6 +53,11 @@ body {
     border-radius: 8px;
 }
 
+label > input {
+    visibility: hidden;
+    position: absolute;
+}
+
 #submit-button {
     width: 100%;
 
