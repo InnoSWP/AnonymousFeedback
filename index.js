@@ -4,7 +4,8 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 const app = express();
-const csv = require('csv-express');
+const converter = require('json-2-csv');
+const fs = require('fs');
 
 const Session = require('./database/SessionModel');
 const mongoose = require('mongoose')
@@ -63,14 +64,18 @@ app.get('/export', (request, response) => {
 
     var filename = "feedbacks.csv";
     
-    Session.find({}).lean().exec({}, function(err, values) {
-        if (err) response.send(err);
-
-        response.statusCode = 200;
-        response.setHeader('Content-Type', 'text/csv');
-        response.setHeader("Content-Disposition", 'attachment; filename='+filename);
-        response.csv(values, true);
-    });
+    Session.findOne( { 'teacherID' : teacherID } ).then(function(doc) {
+        if (!doc) {
+          throw new Error('No record found');
+        }
+        converter.json2csv(doc, (err, csv) => {
+            if (err) {
+                throw err;
+            }
+            fs.writeFileSync('feedbacks.csv', csv);
+            response.download('feedbacks.csv');
+        });
+    }); 
 })
 app.post('/api/codeword', (request, response) => {
 
