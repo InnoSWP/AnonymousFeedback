@@ -10,27 +10,69 @@
 </head>
 
 <body>
-	<main>
-		<button id="back-button" onclick="location.href = '/';">Back</button>
-		<div id="header-div">
-			<div id="name">Name</div>
-			<div id="sessionTitle">Session title</div>
-		</div>
-		<div id="form-div">
-			<form id="form">
-				<div id="input-fields">
-					<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
-					<!-- <div id="delay">
-					<text>Choose the delay</text>
-					<input type="number" min="0" max="24">
-					<input type="number" min="0" max="60">
-					<input type="number" min="0" max="60">
-					</div> -->
+	<div id="content">
+		<header id="header-div">
+			<div id="info">
+				<div id="info-title">Recipient info</div>
+				<div id="recipient-info">
+					<div class="info-item">
+						<div>Name</div>
+						<div id="name">Arsen Mutalapov</div>
+					</div>
+					<div class="info-item">
+						<div>Code</div>
+						<div id="codeword">WWW</div>
+					</div>
+					<div class="info-item">
+						<div>Title</div>
+						<div id="sessionTitle">TitleTIele</div>
+					</div>
 				</div>
-				<input id="submit-button" type="Submit" value="Send">
+			</div>
+			<button class="btn" id="back-button" onclick="location.href = '/';">Back</button>
+		</header>
+		<main id="messages">
+		</main>
+		<footer>
+			<form id="form">
+				<div id="smilesArea">
+					<input id="frustrated" type="radio" name="satisfaction" value="frustrated">
+					<label for="frustrated"><img class="satisfaction-img" src="static/frustrated.png"></img>
+						<span>Frustrated</span></label>
+
+					<input id="discontent" type="radio" name="satisfaction" value="discontent">
+					<label for="discontent"><img class="satisfaction-img" src="static/discontent.png"></img>
+						<span>Discontent</span>
+					</label>
+					<input id="neutral" type="radio" name="satisfaction" value="neutral" checked>
+					<label for="neutral"><img class="satisfaction-img" src="static/neutral.png"></img>
+						<span>Neutral</span></label>
+					<input id="satisfied" type="radio" name="satisfaction" value="satisfied">
+					<label for="satisfied"><img class="satisfaction-img" src="static/satisfied.png"></img>
+						<span>Satisfied</span></label>
+					<input id="delight" type="radio" name="satisfaction" value="delight">
+					<label for="delight"><img class="satisfaction-img" src="static/delight.png"></img>
+						<span>Delight</span></label>
+				</div>
+				<div id="inputArea">
+					<textarea id="feedbackText" placeholder="Enter your feedback here..." form="feedbackform" autofocus
+						required></textarea>
+					<div id="sendArea">
+						<div id="delayArea"> <span>Delay</span>
+							<select id="delay">
+								<option value=”0”>0 sec</option>
+								<option value=”5”>5 sec</option>
+								<option value=”30”>30 sec</option>
+								<option value=”60”>1 min</option>
+								<option value=”600”>10 min</option>
+							</select>
+						</div>
+						<input class="btn" id="send" type="submit" value="Send">
+					</div>
+				</div>
 			</form>
-		</div>
-	</main>
+		</footer>
+	</div>
 	<script type="module" src="feedback.bundle.js"></script>
 </body>
 
