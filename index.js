@@ -4,6 +4,11 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+const converter = require('json-2-csv');
+const fs = require('fs');
+
+const Session = require('./database/SessionModel');
+const mongoose = require('mongoose')
 
 module.exports = app;
 
@@ -53,6 +58,31 @@ app.get('/teacher.bundle.js', (request, response) => {
 })
 app.get('/notification_sound.mp3', (request, response) => {
     response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
+})
+app.get('/export', async (request, response) => {
+    const teacherID = request.query.teacherID;
+
+    var filename = "feedback.csv";
+
+    await Session.findOne({ 'teacherID': teacherID }).select('feedback').lean().then(function (doc) {
+        if (!doc) {
+            throw new Error('No record found');
+        }
+
+        var filteredDoc = []
+        doc.feedback.forEach(entry => {
+            var data = { "Date": entry.date, "Time": entry.time, "Text": entry.text };
+            filteredDoc.push(data);
+        });
+
+        converter.json2csv(filteredDoc, async (err, csv) => {
+            if (err) {
+                throw err;
+            }
+            fs.writeFileSync(filename, csv);
+            response.download(filename);
+        });
+    });
 })
 app.post('/api/codeword', (request, response) => {
 
