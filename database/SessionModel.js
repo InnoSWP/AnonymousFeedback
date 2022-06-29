@@ -6,6 +6,10 @@ const feedback = new Schema({
         type: String,
         required: true
     },
+    satisfaction: {
+        type: String,
+        required: true
+    },
     date: {
         type: String,
         default: new Date,

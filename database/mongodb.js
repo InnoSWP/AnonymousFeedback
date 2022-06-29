@@ -21,7 +21,7 @@ const removeSession = async (teacherID) => {
     if (!session) return;
 
     await Session.deleteOne(session).then(() => { console.log('Session Deleted from database Successfully') })
-        .catch(e => { console.log(e) }); 
+        .catch(e => { console.log(e) });
 }
 
 const getFeedback = async (codeword) => {
@@ -35,6 +35,7 @@ const addFeedback = async (codeword, feedback) => {
     if (!session) return;
     const feedbackList = session.feedback;
     feedbackList.push(feedback);
+    console.log(`Added feedback: ${JSON.stringify(feedback)}`)
     await session.save();
 }
 
