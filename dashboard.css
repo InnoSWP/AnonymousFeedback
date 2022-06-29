@@ -92,6 +92,12 @@ main {
     justify-content: center;
 }
 
+.main-block {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: stretch;
+}
+
 #confirm-form {
     background-color: #f6f7ff;
     display: none;
@@ -170,17 +176,15 @@ footer {
 
 .my_scroll_div {
     overflow-y: auto;
-    height: calc(100vh - 135px);
+    height: calc(100vh - 200px);
 }
 
 #feedback-list {
     min-height: 100%;
     flex-grow: 1;
-    display: block;
     padding: 5px;
     width: 80%;
     max-width: 550px;
-    align-items: center;
     box-sizing: border-box;
     overflow-y: auto;
     overflow-x: hidden;
