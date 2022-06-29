@@ -8,15 +8,15 @@ const app = express();
 module.exports = app;
 
 app.use(express.json()) // for a server to accept json format
+app.use(express.static('static/css'));
+app.use(express.static('static'));
+
 
 app.get('/', (request, response) => {
     response.sendFile(path.join(__dirname, 'index.html'));
 })
 app.get('/student.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'student.js'));
-})
-app.get('/index.css', (request, response) => {
-    response.sendFile(path.join(__dirname, 'index.css'));
 })
 app.get('/login', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.html'));
@@ -27,14 +27,8 @@ app.get('/guest.js', (request, response) => {
 app.get('/login.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'login.js'));
 })
-app.get('/login.css', (request, response) => {
-    response.sendFile(path.join(__dirname, 'login.css'));
-})
 app.get('/dashboard', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.html'));
-})
-app.get('/dashboard.css', (request, response) => {
-    response.sendFile(path.join(__dirname, 'dashboard.css'));
 })
 app.get('/dashboard.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'dashboard.js'));
@@ -50,9 +44,6 @@ app.get('/feedback.bundle.js', (request, response) => {
 })
 app.get('/teacher.bundle.js', (request, response) => {
     response.sendFile(path.join(__dirname, 'teacher.bundle.js'));
-})
-app.get('/notification_sound.mp3', (request, response) => {
-    response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
 })
 app.post('/api/codeword', (request, response) => {
 

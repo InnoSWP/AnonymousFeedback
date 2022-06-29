@@ -1,28 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link href="login.css" rel="stylesheet"> 
+    <link href="/css/login.css" rel="stylesheet">
 </head>
+
 <body>
     <div id="form-div">
-    <nav id="top-nav">
-        <button id="back-button" onclick="location.href = '/';">Back</button>
-        <button id="guest-button">Guest</button>
-    </nav>
-    <form id="login-form" action="/dashboard" method="post">
-        <label for="login">Login</label>
-        <input type="text" placeholder="Enter login or email" name=login required>
+        <nav id="top-nav">
+            <button id="back-button" onclick="location.href = '/';">Back</button>
+            <button id="guest-button">Guest</button>
+        </nav>
+        <form id="login-form" action="/dashboard" method="post">
+            <label for="login">Login</label>
+            <input type="text" placeholder="Enter login or email" name=login required>
 
-        <label for="password">Password</label>
-        <input type="password" placeholder="Enter password" name="password" required>
-        <button type="submit">Log In</button>
-    </form>
+            <label for="password">Password</label>
+            <input type="password" placeholder="Enter password" name="password" required>
+            <button type="submit">Log In</button>
+        </form>
     </div>
 </body>
-    <script src="/guest.js"></script>
-    <script src="/login.js"></script>
+<script src="/guest.js"></script>
+<script src="/login.js"></script>
+
 </html>
