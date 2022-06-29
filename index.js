@@ -64,10 +64,19 @@ app.get('/export', (request, response) => {
 
     var filename = "feedbacks.csv";
     
-    Session.findOne( { 'teacherID' : teacherID } ).lean().then(function(doc) {
+    Session.findOne( { 'teacherID' : teacherID } ).select('feedback').lean().then(function(doc) {
         if (!doc) {
           throw new Error('No record found');
         }
+
+        var filteredDoc = []
+        doc['feedback'].forEach(function(entry) {
+          var arr = [{"Date": entry.date}, {"Time" : entry.time} , {"Text" : entry.text}];
+          filteredDoc.push(arr);
+        });
+
+        doc = filteredDoc;
+
         converter.json2csv(doc, (err, csv) => {
             if (err) {
                 throw err;
