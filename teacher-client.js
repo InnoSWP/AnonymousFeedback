@@ -1,9 +1,11 @@
 import { addMessage, copyEvent, updateLink } from './dashboard';
 import { nameEvent, titleEvent } from './submitTitleName';
 import { resetEvent } from './scripts/resetGuest';
+import { exportEvent } from './scripts/exportSession'
 import { formEvent } from './scripts/confirmForm';
 formEvent();
 resetEvent();
+exportEvent();
 nameEvent();
 titleEvent();
 copyEvent();

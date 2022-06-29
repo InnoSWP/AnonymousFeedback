@@ -4,6 +4,10 @@ const path = require('path');
 const PORT = process.env.PORT || 5000;
 
 const app = express();
+const csv = require('csv-express');
+
+const Session = require('./database/SessionModel');
+const mongoose = require('mongoose')
 
 module.exports = app;
 
@@ -53,6 +57,20 @@ app.get('/teacher.bundle.js', (request, response) => {
 })
 app.get('/notification_sound.mp3', (request, response) => {
     response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
+})
+app.get('/export', (request, response) => {
+    const teacherID = request.query.teacherID;
+
+    var filename = "feedbacks.csv";
+    
+    Session.find({}).lean().exec({}, function(err, values) {
+        if (err) response.send(err);
+
+        response.statusCode = 200;
+        response.setHeader('Content-Type', 'text/csv');
+        response.setHeader("Content-Disposition", 'attachment; filename='+filename);
+        response.csv(values, true);
+    });
 })
 app.post('/api/codeword', (request, response) => {
 
