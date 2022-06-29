@@ -10,54 +10,63 @@
 </head>
 
 <body>
-	<main>	
-		<div id="header-div">
-			<div id="codeword">QWE</div>
+	<div id="content">
+		<header id="header-div">
+			<div>Recipient</div>
 			<div id="name">Name</div>
+			<div id="codeword">QWE</div>
 			<div id="sessionTitle">Session title</div>
-		</div>
-		<div id="previous-feedback">
-			<div class="previous">
-				<div class="smile">&#128513</div>
-				<div class="prevText">Text</div>
-				<div class="prevTime">11:00</div>	
-			</div>
-			<div class="previous">
-				<div class="smile">&#128578</div>
-				<div class="prevText">Text</div>
-				<div class="prevTime">11:00</div>	
-			</div>
-			<div class="previous">
-				<div class="smile">&#128528</div>
-				<div class="prevText">Text</div>
-				<div class="prevTime">11:00</div>	
-			</div>
-		</div>
-		<div id="form">
-			<form id="feedback">
-				<textarea id="feedbackText" placeholder="Enter your feedback here..."></textarea>
-				<div id="smilesArea">
-					<label>
-						<input type="radio" name="grade" value="1"> &#128513; 
-						<input type="radio" name="grade" value="2"> &#128578;
-						<input type="radio" name="grade" value="3" checked> &#128528;
-						<input type="radio" name="grade" value="4"> &#9785;
-						<input type="radio" name="grade" value="5"> &#128534;
-					</label>
-				</div>
-				<select id="delay">
-					<option value=”0”>0 sec</option>
-					<option value=”5”>5 sec</option>
-					<option value=”30”>30 sec</option>
-					<option value=”60”>1 min</option>
-					<option value=”600”>10 min</option>
-				</select>
-				<input id="send" type="submit" value="Send">
-			</form>
 			<button id="back-button" onclick="location.href = '/';">Back</button>
-		</div>
-	</main>
+		</header>
+		<main id="messages">
+		</main>
+		<footer>
+			<form id="feedback-form">
+				<div id="smilesArea">
+					<input id="sarcastic" type="radio" name="satisfaction" value="sarcastic">
+					<label for="sarcastic"><img class="satisfaction-img" src="static/sarcastic.png"></img>
+						<span>Sarcastic</span></label>
+
+					<input id="sad" type="radio" name="satisfaction" value="sad">
+					<label for="sad"><img class="satisfaction-img" src="static/sad.png"></img>
+						<span>Sad</span>
+					</label>
+
+
+					<input id="neutral" type="radio" name="satisfaction" value="neutral" checked>
+					<label for="neutral"><img class="satisfaction-img" src="static/neutral.png"></img>
+						<span>Neutral</span></label>
+
+
+					<input id="smile" type="radio" name="satisfaction" value="smile">
+					<label for="smile"><img class="satisfaction-img" src="static/smile.png"></img>
+						<span>Smile</span></label>
+
+					<input id="star" type="radio" name="satisfaction" value="star">
+					<label for="star"><img class="satisfaction-img" src="static/star.png"></img>
+						<span>Star</span></label>
+				</div>
+				<div id="inputArea">
+					<textarea id="feedbackText" placeholder="Enter your feedback here..." form="feedbackform" autofocus
+						required></textarea>
+					<div id="sendArea">
+						<div id="delayArea"> <span>Delay</span>
+							<select id="delay">
+								<option value=”0”>0 sec</option>
+								<option value=”5”>5 sec</option>
+								<option value=”30”>30 sec</option>
+								<option value=”60”>1 min</option>
+								<option value=”600”>10 min</option>
+							</select>
+						</div>
+						<input id="send" type="submit" value="Send">
+					</div>
+				</div>
+			</form>
+		</footer>
+	</div>
 	<script type="module" src="feedback.bundle.js"></script>
+	<script>document.getElementById('feedback-form').addEventListener('submit', (e) => e.preventDefault())</script>
 </body>
 
 </html>
