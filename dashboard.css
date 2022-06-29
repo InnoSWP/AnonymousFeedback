@@ -91,7 +91,8 @@ main {
     background-color: #f6f7ff;
     justify-content: center;
 }
-.main-block{
+
+.main-block {
     display: flex;
     flex-direction: column-reverse;
     align-items: stretch;
@@ -175,7 +176,7 @@ footer {
 
 .my_scroll_div {
     overflow-y: auto;
-    height: calc(100vh - 180px);
+    height: calc(100vh - 200px);
 }
 
 #feedback-list {
