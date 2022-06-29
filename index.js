@@ -64,7 +64,7 @@ app.get('/export', (request, response) => {
 
     var filename = "feedbacks.csv";
     
-    Session.findOne( { 'teacherID' : teacherID } ).then(function(doc) {
+    Session.findOne( { 'teacherID' : teacherID } ).lean().then(function(doc) {
         if (!doc) {
           throw new Error('No record found');
         }
