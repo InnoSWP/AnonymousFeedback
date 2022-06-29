@@ -77,7 +77,6 @@ header {
     display: inline-block;
     padding: 3px;
     text-align: center;
-    box-shadow: 2px 2px 3px #DDDDDD;
     transition-duration: 0.2s;
     font-size: 18px;
 }
