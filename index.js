@@ -59,32 +59,30 @@ app.get('/teacher.bundle.js', (request, response) => {
 app.get('/notification_sound.mp3', (request, response) => {
     response.sendFile(path.join(__dirname, 'notification_sound.mp3'));
 })
-app.get('/export', (request, response) => {
+app.get('/export', async (request, response) => {
     const teacherID = request.query.teacherID;
 
-    var filename = "feedbacks.csv";
-    
-    Session.findOne( { 'teacherID' : teacherID } ).select('feedback').lean().then(function(doc) {
+    var filename = "feedback.csv";
+
+    await Session.findOne({ 'teacherID': teacherID }).select('feedback').lean().then(function (doc) {
         if (!doc) {
-          throw new Error('No record found');
+            throw new Error('No record found');
         }
 
         var filteredDoc = []
-        doc['feedback'].forEach(function(entry) {
-          var arr = [{"Date": entry.date}, {"Time" : entry.time} , {"Text" : entry.text}];
-          filteredDoc.push(arr);
+        doc.feedback.forEach(entry => {
+            var data = { "Date": entry.date, "Time": entry.time, "Text": entry.text };
+            filteredDoc.push(data);
         });
 
-        doc = filteredDoc;
-
-        converter.json2csv(doc, (err, csv) => {
+        converter.json2csv(filteredDoc, async (err, csv) => {
             if (err) {
                 throw err;
             }
-            fs.writeFileSync('feedbacks.csv', csv);
-            response.download('feedbacks.csv');
+            fs.writeFileSync(filename, csv);
+            response.download(filename);
         });
-    }); 
+    });
 })
 app.post('/api/codeword', (request, response) => {
 
