@@ -9,6 +9,7 @@ const fs = require('fs');
 
 const Session = require('./database/SessionModel');
 const mongoose = require('mongoose')
+const fns = require('date-fns')
 
 module.exports = app;
 
@@ -72,7 +73,7 @@ app.get('/export', async (request, response) => {
 
         var filteredDoc = []
         doc.feedback.forEach(entry => {
-            var data = { "Date": entry.date, "Time": entry.time, "Text": entry.text };
+            var data = { "Date": fns.format(new Date(entry.date), "dd.MM.yyyy"), "Time": entry.time, "Text": entry.text };
             filteredDoc.push(data);
         });
 

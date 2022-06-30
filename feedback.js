@@ -46,12 +46,12 @@ function updateHeader(teacher, title) {
 }
 
 function getTime() {
-  let date = new Date();
-  let hours = date.getHours().toString();
+  let date = new Date().toLocaleString();
+  let hours = date.getHours().toLocaleString();
   if (hours.length == 1) {
     hours = "0" + hours;
   }
-  let minutes = date.getMinutes().toString();
+  let minutes = date.getMinutes().toLocaleString();
   if (minutes.length == 1) {
     minutes = "0" + minutes;
   }
