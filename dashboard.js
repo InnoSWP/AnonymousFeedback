@@ -8,8 +8,9 @@ export function addMessage(feedback) {
 
     newMessage.innerHTML = `
                             <div class="feedback-image"><img src="/${feedback.satisfaction}.png"></div>
-                            <div class="feedback-text">"${feedback.text}"</div>
-                            <div class="feedback-time">${feedback.time}</div>
+                            <div class="feedback-text">${feedback.text.replace(/</g, '&#60;')
+            .replace(/>/g, "&#62;").replace(/\\/g, "&#92;")}</div >
+                <div class="feedback-time">${feedback.time}</div>
                             `
     audio.play().catch(e => { });
 
