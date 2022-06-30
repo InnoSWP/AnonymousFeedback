@@ -40,6 +40,7 @@ const sessionTitleField = document.getElementById('sessionTitle');
 function updateHeader(teacher, title) {
   document.getElementById('name').innerText = teacher;
   document.getElementById('sessionTitle').innerText = title;
+  document.getElementById('codeword').innerText = codeword;
 }
 
 
