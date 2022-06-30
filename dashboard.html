@@ -11,11 +11,13 @@
 
 <body>
     <header>
-        <form id="name-form"><input type="text" id="name" placeholder="Enter name"></form>
-        <form id="title-form"><input type="text" id="session-title" placeholder="Enter title"></form>
+        <button id="back-button" onclick="location.href = '/';">Back</button>
+        <div id="info">
+            <form id="name-form"><input type="text" id="name" placeholder="Enter name"></form>
+            <form id="title-form"><input type="text" id="session-title" placeholder="Enter title"></form>
+        </div>
         <nav>
             <button id="reset-button">New session</button>
-            <button id="back-button" onclick="location.href = '/';">Back</button>
             <button id="export-button">Export</button>
         </nav>
     </header>

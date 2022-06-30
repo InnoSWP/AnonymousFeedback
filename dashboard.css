@@ -29,24 +29,28 @@ button:hover {
     box-shadow: 1px 1px 10px #252524;
 }
 
+#info {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
 nav {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
     margin: 0 15px;
-    flex-shrink: 10;
+}
+
+nav button {
+    float: right;
 }
 
 form {
-    margin: 0 15px;
+    display: inline-block;
 }
 
 header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     background-color: #CBDEDD;
     line-height: 48px;
     letter-spacing: 0;
@@ -193,14 +197,14 @@ footer {
 }
 
 @media (min-width: 800px) {
-    header {
-        justify-content: center;
+    #info {
+        flex-grow: 0;
     }
 }
 
-@media (max-width: 700px) {
-    form {
-        margin: 0 5px
+@media (max-width: 450px) {
+    form input {
+        max-width: 18ch;
     }
 }
 
