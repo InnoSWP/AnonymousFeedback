@@ -15,6 +15,9 @@ export function addMessage(feedback) {
     audio.play().catch(e => { console.log('Try to interact with the page to play audio') });
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
+    console.log(feedbackList.scrollTop)
+    if (Math.abs(feedbackList.scrollTop) < 200)
+        feedbackList.scrollTop = 0;
 }
 
 export const copyEvent = () => {
