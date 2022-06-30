@@ -17,6 +17,8 @@ export const socket = io(URL, {
     autoConnect: false,
 });
 
+const audio = new Audio('notification_sound.mp3');
+
 //Restore token
 let token = getCookie('token'); // extract value of token from cookie
 if (token) socket.auth = { id: token }; // to update id on the server
@@ -30,6 +32,7 @@ socket.on('connect', () => {
 
     socket.on('receive-message', (feedback) => {
         addMessage(feedback);
+        audio.play().catch(e => { console.log('Try to interact with the page to play audio') });
     })
 
     socket.on('init', (codeword, messages, teacher, title) => {
