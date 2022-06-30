@@ -26,8 +26,9 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   if (feedbackTextField.value.trim() != "") {
-    console.log(`You sent: "${feedbackTextField.value}" to session with codeword: "${codeword}"`);
-    socket.emit('send-message', codeword, feedbackTextField.value, "neutral");
+    const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
+    console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
+    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction);
     feedbackTextField.value = "";
   }
 

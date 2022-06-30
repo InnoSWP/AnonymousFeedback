@@ -206,7 +206,7 @@ footer {
 .feedback-item {
     margin: 5px;
     border-radius: 2px;
-    padding: 5px 5px 5px 0;
+    padding: 5px;
     box-sizing: border-box;
     box-shadow: 2px 1px 5px grey;
     transition: all .25s ease-in-out;
@@ -224,10 +224,10 @@ footer {
     word-break: break-all;
     font-size: 22px;
     flex-shrink: 1;
+    margin: 0 5px;
 }
 
 .feedback-time {
-    flex-basis: 5em;
     text-align: right;
     margin: 0 5px;
 }
