@@ -22,4 +22,6 @@ const getNewCodeword = () => {
     return newCodeword;
 }
 
-module.exports = { getNewCodeword, codewordSet, generateNewCodeword };
+const deleteCodeword = codeword => codewordSet.delete(codeword);
+
+module.exports = { getNewCodeword, codewordSet, generateNewCodeword, deleteCodeword };

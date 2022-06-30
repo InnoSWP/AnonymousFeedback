@@ -45,10 +45,12 @@ module.exports = {
           io.to(socket.id).emit('init', "", "");
       }
 
-      socket.on('send-message', (codeword, message, satisfaction) => {
+      socket.on('send-message', (codeword, message, satisfaction, delay) => {
         const time = getTime();
-        addFeedback(codeword, { time: time, text: message, satisfaction }); // add to database
-        socket.to(codeword).emit("receive-message", { text: message, time: time, satisfaction });
+        setTimeout(() => {
+          addFeedback(codeword, { time: time, text: message, satisfaction }); // add to database
+          socket.to(codeword).emit("receive-message", { text: message, time: time, satisfaction });
+        }, delay * 1000);
       })
       socket.on('update-session', (codeword, data) => {
         console.log(`Codeword: ${codeword} with data: ${JSON.stringify(data)}`);

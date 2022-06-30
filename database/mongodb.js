@@ -1,5 +1,5 @@
 const mongoose = require('mongoose');
-const getNewCodeword = require('../codewordSet');
+const { deleteCodeword } = require('../codewordSet');
 
 const url = 'mongodb+srv://system205:qwerty123@cluster0.xhzic3q.mongodb.net/?retryWrites=true&w=majority';
 mongoose.connect(url, () => {
@@ -19,7 +19,7 @@ const addSession = async (sessionInfo) => {
 const removeSession = async (teacherID) => {
     const session = await Session.findOne({ teacherID: teacherID });
     if (!session) return;
-
+    deleteCodeword(session.codeword);
     await Session.deleteOne(session).then(() => { console.log('Session Deleted from database Successfully') })
         .catch(e => { console.log(e) });
 }

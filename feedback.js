@@ -29,7 +29,8 @@ form.addEventListener('submit', (event) => {
   if (feedbackTextField.value.trim() != "") {
     const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
     console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
-    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction);
+    const sec = document.getElementById('delay').value;
+    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec);
     addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
     feedbackTextField.value = "";
   }

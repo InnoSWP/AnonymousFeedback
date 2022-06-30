@@ -1,20 +1,19 @@
 import { host } from "./static/constants";
 
-const audio = new Audio('notification_sound.mp3');
 export function addMessage(feedback) {
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
     newMessage.classList.add('feedback-item');
-
     newMessage.innerHTML = `
                             <div class="feedback-image"><img src="/${feedback.satisfaction}.png"></div>
                             <div class="feedback-text">${feedback.text.replace(/</g, '&#60;')
             .replace(/>/g, "&#62;").replace(/\\/g, "&#92;")}</div >
                 <div class="feedback-time">${feedback.time}</div>
                             `
-    audio.play().catch(e => { console.log('Try to interact with the page to play audio') });
-
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
+    console.log(feedbackList.scrollTop)
+    if (Math.abs(feedbackList.scrollTop) < 200)
+        feedbackList.scrollTop = 0;
 }
 
 export const copyEvent = () => {
