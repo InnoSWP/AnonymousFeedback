@@ -12,7 +12,7 @@ export function addMessage(feedback) {
             .replace(/>/g, "&#62;").replace(/\\/g, "&#92;")}</div >
                 <div class="feedback-time">${feedback.time}</div>
                             `
-    audio.play().catch(e => { });
+    audio.play().catch(e => { console.log('Try to interact with the page to play audio') });
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
