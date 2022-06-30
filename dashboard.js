@@ -42,19 +42,14 @@ export function updateLink(codeword) {
 
 export const changeEvent = () => {
     const $name = document.getElementById('name');
-    $name.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $name.style.width = event.target.value.length / 2 + "ch";
+    $name.addEventListener('input', (event) => {
+        if ($name.value.length < 10) { $name.style.width = 10 + "ch"; return }
+        $name.style.width = $name.value.length + "ch";
     })
     const $title = document.getElementById('session-title');
-    $title.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $title.style.width = event.target.value.length + "ch";
-    })
-    const $link = document.getElementById('link-field');
-    $link.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $link.style.width = event.target.value.length + "ch";
+    $title.addEventListener('input', (event) => {
+        if ($title.value.length < 10) { $title.style.width = 10 + "ch"; return }
+        $title.style.width = $title.value.length + "ch";
     })
 }
 

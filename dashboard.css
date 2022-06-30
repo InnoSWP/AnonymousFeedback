@@ -35,6 +35,7 @@ nav {
     flex-wrap: wrap;
     justify-content: center;
     margin: 0 15px;
+    flex-shrink: 10;
 }
 
 form {
@@ -55,17 +56,11 @@ header {
     color: #252524;
 }
 
-form {
-    display: flex;
-}
-
 header input[type=text] {
     width: 10ch;
-    min-width: 10ch;
     padding: 0;
     border: 0;
     background-color: transparent;
-    margin: 5px;
     outline: none;
     font-size: 18px;
 }
@@ -200,6 +195,12 @@ footer {
 @media (min-width: 800px) {
     header {
         justify-content: center;
+    }
+}
+
+@media (max-width: 700px) {
+    form {
+        margin: 0 5px
     }
 }
 
