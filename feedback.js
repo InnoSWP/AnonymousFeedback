@@ -59,3 +59,11 @@ function getTime() {
 }
 
 
+feedbackTextField.addEventListener('keypress', e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    console.log('Enter but not Shift');
+    form.dispatchEvent(new Event('submit'));
+  }
+})
+
