@@ -1,6 +1,5 @@
 import { host } from '../static/constants';
 import { getCookie } from '../teacher-client';
-const URL = 'http://' + host;
 
 const exportButton = document.getElementById('export-button');
 
@@ -10,6 +9,6 @@ export const exportEvent = () => {
 
         const teacherID = getCookie('token');
         // console.log(teacherID);
-        window.location.href = URL + "/export?teacherID=" + teacherID;
+        window.location.href = "/export?teacherID=" + teacherID;
     })
 }
