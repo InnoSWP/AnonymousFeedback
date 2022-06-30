@@ -1,5 +1,6 @@
+import { host } from '../static/constants';
 import { getCookie } from '../teacher-client';
-const URL = 'http://localhost:5000'; 
+const URL = 'http://' + host;
 
 const exportButton = document.getElementById('export-button');
 
