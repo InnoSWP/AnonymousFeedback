@@ -1,4 +1,5 @@
 const io = require('socket.io-client');
+const { addMessage } = require('./dashboard');
 const { host } = require('./static/constants');
 const URL = 'http://' + host; // server socket.io
 const socket = io(URL, {
@@ -26,8 +27,10 @@ form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   if (feedbackTextField.value.trim() != "") {
-    console.log(`You sent: "${feedbackTextField.value}" to session with codeword: "${codeword}"`);
-    socket.emit('send-message', codeword, feedbackTextField.value, "neutral");
+    const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
+    console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
+    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction);
+    addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
     feedbackTextField.value = "";
   }
 
@@ -41,5 +44,26 @@ function updateHeader(teacher, title) {
   document.getElementById('sessionTitle').innerText = title;
 }
 
+function getTime() {
+  let date = new Date();
+  let hours = date.getHours().toString();
+  if (hours.length == 1) {
+    hours = "0" + hours;
+  }
+  let minutes = date.getMinutes().toString();
+  if (minutes.length == 1) {
+    minutes = "0" + minutes;
+  }
+  let time = hours + ":" + minutes;
+  return time;
+}
 
+
+feedbackTextField.addEventListener('keypress', e => {
+  if (e.key === "Enter" && !e.shiftKey) {
+    e.preventDefault();
+    console.log('Enter but not Shift');
+    form.dispatchEvent(new Event('submit'));
+  }
+})
 

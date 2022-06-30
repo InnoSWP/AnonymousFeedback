@@ -1,4 +1,4 @@
-import { addMessage, copyEvent, updateLink } from './dashboard';
+import { addMessage, copyEvent, updateLink, changeEvent } from './dashboard';
 import { nameEvent, titleEvent } from './submitTitleName';
 import { resetEvent } from './scripts/resetGuest';
 import { exportEvent } from './scripts/exportSession'
@@ -9,6 +9,7 @@ exportEvent();
 nameEvent();
 titleEvent();
 copyEvent();
+changeEvent();
 import { io } from 'socket.io-client';
 import { host } from './static/constants';
 const URL = 'http://' + host; // server socket.io
@@ -50,6 +51,10 @@ export function getCookie(name) {
 }
 
 function updateHeader(teacher, title) {
-    document.getElementById('session-title').value = title;
-    document.getElementById('name').value = teacher;
+    const $title = document.getElementById('session-title');
+    $title.value = title;
+    const name = document.getElementById('name');
+    name.value = teacher;
+    if (name.value) name.style.width = name.value.length + "ch";
+    if ($title.value) $title.style.width = $title.value.length + "ch";
 }

@@ -13,25 +13,18 @@
 	<div id="content">
 		<header id="header-div">
 			<div id="info">
-				<div id="info-title">Recipient info</div>
 				<div id="recipient-info">
 					<div class="info-item">
-						<div>Name</div>
-						<div id="name">Arsen Mutalapov</div>
+						<div id="name"></div>
 					</div>
 					<div class="info-item">
-						<div>Code</div>
-						<div id="codeword">WWW</div>
-					</div>
-					<div class="info-item">
-						<div>Title</div>
-						<div id="sessionTitle">TitleTIele</div>
+						<div id="sessionTitle"></div>
 					</div>
 				</div>
 			</div>
 			<button class="btn" id="back-button" onclick="location.href = '/';">Back</button>
 		</header>
-		<main id="messages">
+		<main id="feedback-list" class="main-block my_scroll_div">
 		</main>
 		<footer>
 			<form id="form">
@@ -39,7 +32,6 @@
 					<input id="frustrated" type="radio" name="satisfaction" value="frustrated">
 					<label for="frustrated"><img class="satisfaction-img" src="frustrated.png"></img>
 						<span>Frustrated</span></label>
-
 					<input id="discontent" type="radio" name="satisfaction" value="discontent">
 					<label for="discontent"><img class="satisfaction-img" src="discontent.png"></img>
 						<span>Discontent</span>
@@ -55,8 +47,7 @@
 						<span>Delight</span></label>
 				</div>
 				<div id="inputArea">
-					<textarea id="feedbackText" placeholder="Enter your feedback here..." form="feedbackform" autofocus
-						required></textarea>
+					<textarea id="feedbackText" placeholder="Enter your feedback here..." autofocus required></textarea>
 					<div id="sendArea">
 						<div id="delayArea"> <span>Delay</span>
 							<select id="delay">

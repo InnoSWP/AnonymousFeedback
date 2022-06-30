@@ -8,10 +8,11 @@ export function addMessage(feedback) {
 
     newMessage.innerHTML = `
                             <div class="feedback-image"><img src="/${feedback.satisfaction}.png"></div>
-                            <div class="feedback-text">"${feedback.text}"</div>
-                            <div class="feedback-time">${feedback.time}</div>
+                            <div class="feedback-text">${feedback.text.replace(/</g, '&#60;')
+            .replace(/>/g, "&#62;").replace(/\\/g, "&#92;")}</div >
+                <div class="feedback-time">${feedback.time}</div>
                             `
-    audio.play().catch(e => { });
+    audio.play().catch(e => { console.log('Try to interact with the page to play audio') });
 
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
 }
@@ -42,19 +43,14 @@ export function updateLink(codeword) {
 
 export const changeEvent = () => {
     const $name = document.getElementById('name');
-    $name.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $name.style.width = event.target.value.length / 2 + "ch";
+    $name.addEventListener('input', (event) => {
+        if ($name.value.length < 10) { $name.style.width = 10 + "ch"; return }
+        $name.style.width = $name.value.length + "ch";
     })
     const $title = document.getElementById('session-title');
-    $title.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $title.style.width = event.target.value.length + "ch";
-    })
-    const $link = document.getElementById('link-field');
-    $link.addEventListener('change', (event) => {
-        console.log(event.target.value)
-        $link.style.width = event.target.value.length + "ch";
+    $title.addEventListener('input', (event) => {
+        if ($title.value.length < 10) { $title.style.width = 10 + "ch"; return }
+        $title.style.width = $title.value.length + "ch";
     })
 }
 

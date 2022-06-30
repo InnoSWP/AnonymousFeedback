@@ -29,23 +29,28 @@ button:hover {
     box-shadow: 1px 1px 10px #252524;
 }
 
+#info {
+    flex-grow: 1;
+    margin: 0 10px;
+}
+
 nav {
-    display: flex;
-    align-items: center;
-    flex-wrap: wrap;
-    justify-content: center;
     margin: 0 15px;
 }
 
+nav button {
+    float: right;
+}
+
 form {
-    margin: 0 15px;
+    display: inline-block;
 }
 
 header {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     background-color: #CBDEDD;
     line-height: 48px;
     letter-spacing: 0;
@@ -55,17 +60,11 @@ header {
     color: #252524;
 }
 
-form {
-    display: flex;
-}
-
 header input[type=text] {
     width: 10ch;
-    min-width: 10ch;
     padding: 0;
     border: 0;
     background-color: transparent;
-    margin: 5px;
     outline: none;
     font-size: 18px;
 }
@@ -175,7 +174,7 @@ footer {
 }
 
 .my_scroll_div {
-    overflow-y: auto;
+    overflow-y: scroll;
     height: calc(100vh - 200px);
 }
 
@@ -198,15 +197,21 @@ footer {
 }
 
 @media (min-width: 800px) {
-    header {
-        justify-content: center;
+    #info {
+        flex-grow: 0;
+    }
+}
+
+@media (max-width: 450px) {
+    form input {
+        max-width: 18ch;
     }
 }
 
 .feedback-item {
     margin: 5px;
     border-radius: 2px;
-    padding: 5px 5px 5px 0;
+    padding: 5px;
     box-sizing: border-box;
     box-shadow: 2px 1px 5px grey;
     transition: all .25s ease-in-out;
@@ -224,10 +229,10 @@ footer {
     word-break: break-all;
     font-size: 22px;
     flex-shrink: 1;
+    margin: 0 5px;
 }
 
 .feedback-time {
-    flex-basis: 5em;
     text-align: right;
     margin: 0 5px;
 }
