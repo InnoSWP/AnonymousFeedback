@@ -21,7 +21,7 @@ body {
     border-radius: 5px;
 }
 
-@media (max-width: 600px) {
+@media (max-width: 666px) {
     #content {
         width: 100%;
         margin: 0;
