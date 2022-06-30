@@ -29,6 +29,19 @@ body {
     }
 }
 
+@media (max-width: 400px) {
+    label span {
+        font-size: 16px;
+    }
+}
+
+@media (max-width: 350px) {
+    label span {
+        font-size: 14px;
+    }
+}
+
+
 
 header {
     padding: 5px;
@@ -72,7 +85,7 @@ header {
     padding: 3px;
     text-align: center;
     transition-duration: 0.2s;
-    font-size: 18px;
+    font-size: 24px;
 }
 
 .info-item:hover {
@@ -206,7 +219,7 @@ label {
     flex-direction: column;
     margin: 5px;
     align-items: center;
-    font-size: 16px;
+    font-size: 18px;
     transition-duration: 0.3s;
 }
 
@@ -255,7 +268,7 @@ input[type=submit] {
 }
 
 #delayArea {
-    font-size: 20px;
+    font-size: 22px;
     flex-grow: 1;
 }
 
@@ -291,7 +304,7 @@ textarea {
     border: none;
     border-radius: 4px;
     box-sizing: border-box;
-    font-size: 18px;
+    font-size: 20px;
     transition-duration: 0.5s;
 }
 
@@ -300,7 +313,7 @@ textarea:focus {
 }
 
 textarea::placeholder {
-    font-size: 18px;
+    font-size: 20px;
 }
 
 textarea:hover {
