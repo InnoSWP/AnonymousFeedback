@@ -23,27 +23,26 @@ socket.on('connect', () => {
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
 })
 
-
 let lastMove = 0;
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   if (feedbackTextField.value.trim() != "") {
-    if(Date.now() - lastMove > 5000) {
+    if (Date.now() - lastMove > 5000) {
 
       const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
       console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
       const sec = document.getElementById('delay').value;
       socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec);
-      addMessage({satisfaction, text: feedbackTextField.value, time: getTime()})
+      addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
       feedbackTextField.value = "";
 
       lastMove = Date.now();
     }
-    else{
-      document.getElementById('feedbackText').style.color = 'red';
+    else {
+      feedbackTextField.style.color = 'red';
       setTimeout(() => {
-        document.getElementById('feedbackText').style.color = 'black';
+        feedbackTextField.style.color = 'black';
       }, 1000);
     }
   }
