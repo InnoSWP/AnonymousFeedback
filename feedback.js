@@ -31,7 +31,7 @@ form.addEventListener('submit', (event) => {
     console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
     const sec = document.getElementById('delay').value;
     socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime(sec));
-    addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
+    addMessage({ satisfaction, text: feedbackTextField.value, time: getTime(0) })
     feedbackTextField.value = "";
   }
 
