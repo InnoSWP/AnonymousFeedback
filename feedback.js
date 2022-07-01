@@ -30,7 +30,7 @@ form.addEventListener('submit', (event) => {
     const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
     console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
     const sec = document.getElementById('delay').value;
-    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime());
+    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime(sec));
     addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
     feedbackTextField.value = "";
   }
@@ -45,8 +45,9 @@ function updateHeader(teacher, title) {
   document.getElementById('sessionTitle').innerText = title;
 }
 
-function getTime() {
+function getTime(delay) {
   let date = new Date();
+  date.setMinutes(date.getMinutes() + Math.floor(delay / 60));
   let hours = date.getHours().toLocaleString();
   if (hours.length == 1) {
     hours = "0" + hours;
@@ -58,7 +59,6 @@ function getTime() {
   let time = hours + ":" + minutes;
   return time;
 }
-
 
 feedbackTextField.addEventListener('keypress', e => {
   if (e.key === "Enter" && !e.shiftKey) {
