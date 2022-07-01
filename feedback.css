@@ -31,13 +31,23 @@ body {
 
 @media (max-width: 400px) {
     label span {
-        font-size: 16px;
+        font-size: 22px;
     }
+
+    label .satisfaction-img {
+        width: calc(90vw / 5);
+        max-width: none;
+    }
+
 }
 
 @media (max-width: 350px) {
     label span {
-        font-size: 14px;
+        font-size: 18px;
+    }
+
+    label .satisfaction-img {
+        width: calc(80vw / 5);
     }
 }
 
