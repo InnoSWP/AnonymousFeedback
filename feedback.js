@@ -30,7 +30,7 @@ form.addEventListener('submit', (event) => {
     const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
     console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
     const sec = document.getElementById('delay').value;
-    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec);
+    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime());
     addMessage({ satisfaction, text: feedbackTextField.value, time: getTime() })
     feedbackTextField.value = "";
   }
@@ -46,7 +46,7 @@ function updateHeader(teacher, title) {
 }
 
 function getTime() {
-  let date = new Date().toLocaleString();
+  let date = new Date();
   let hours = date.getHours().toLocaleString();
   if (hours.length == 1) {
     hours = "0" + hours;

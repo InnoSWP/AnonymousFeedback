@@ -45,11 +45,11 @@ module.exports = {
           io.to(socket.id).emit('init', "", "");
       }
 
-      socket.on('send-message', (codeword, message, satisfaction, delay) => {
-        const time = getTime();
+      socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
+        // const time = getTime();
         setTimeout(() => {
-          addFeedback(codeword, { time: time, text: message, satisfaction }); // add to database
-          socket.to(codeword).emit("receive-message", { text: message, time: time, satisfaction });
+          addFeedback(codeword, { time, text: message, satisfaction }); // add to database
+          socket.to(codeword).emit("receive-message", { text: message, time, satisfaction });
         }, delay * 1000);
       })
       socket.on('update-session', (codeword, data) => {
@@ -63,18 +63,4 @@ module.exports = {
       });
     })
   }, http
-}
-
-function getTime() {
-  let date = new Date();
-  let hours = date.getHours().toString();
-  if (hours.length == 1) {
-    hours = "0" + hours;
-  }
-  let minutes = date.getMinutes().toString();
-  if (minutes.length == 1) {
-    minutes = "0" + minutes;
-  }
-  let time = hours + ":" + minutes;
-  return time;
 }
