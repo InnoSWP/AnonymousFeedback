@@ -73,7 +73,7 @@ app.get('/export', async (request, response) => {
 
         var filteredDoc = []
         doc.feedback.forEach(entry => {
-            var data = { "Date": fns.format(new Date(entry.date), "dd.MM.yyyy"), "Time": entry.time, "Text": entry.text };
+            var data = { "Date": fns.format(new Date(entry.date), "dd.MM.yyyy"), "Time": entry.time, "Text": entry.text, "Satisfaction": entry.satisfaction };
             filteredDoc.push(data);
         });
 
