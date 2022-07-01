@@ -140,6 +140,7 @@ main {
     justify-content: space-evenly;
     flex-grow: 1;
     padding: 10px;
+    font-size: 24px;
 }
 
 footer {
