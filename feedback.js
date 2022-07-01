@@ -23,16 +23,28 @@ socket.on('connect', () => {
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
 })
 
+let lastMove = 0;
 form.addEventListener('submit', (event) => {
   event.preventDefault();
 
   if (feedbackTextField.value.trim() != "") {
-    const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
-    console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
-    const sec = document.getElementById('delay').value;
-    socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime(sec));
-    addMessage({ satisfaction, text: feedbackTextField.value, time: getTime(0) })
-    feedbackTextField.value = "";
+    if (Date.now() - lastMove > 5000) {
+
+      const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
+      console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
+      const sec = document.getElementById('delay').value;
+      socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime(sec));
+      addMessage({ satisfaction, text: feedbackTextField.value, time: getTime(0) })
+      feedbackTextField.value = "";
+
+      lastMove = Date.now();
+    }
+    else {
+      feedbackTextField.style.color = 'red';
+      setTimeout(() => {
+        feedbackTextField.style.color = 'black';
+      }, 1000);
+    }
   }
 
 })
