@@ -74,6 +74,7 @@ header input[type=text]::placeholder {
     color: #004434;
     font-style: italic;
     background-color: transparent;
+    opacity: 0.8;
 }
 
 header input:focus {
