@@ -23,7 +23,6 @@ module.exports = {
       }
 
       socket.session = await getSession(socket.id);
-      socket.codeword = socket.session.codeword;
 
       next();
     })
@@ -35,7 +34,7 @@ module.exports = {
       // It was a teacher entered dashboard
       if (socket.session) {
         console.log('Init the client with codeword:', socket.session.codeword);
-        socket.join(socket.codeword);
+        socket.join(socket.session.codeword);
         io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
       } else if (socket.handshake.auth.codeword) {
         const session = await getSessionByCodeword(socket.handshake.auth.codeword);
