@@ -18,6 +18,9 @@ const query = new Proxy(new URLSearchParams(window.location.search), {
 const codeword = query.codeword;
 if (!codeword) document.location.href = '/';
 
+const nameField = document.getElementById('name');
+const sessionTitleField = document.getElementById('sessionTitle');
+
 socket.auth = { ...socket.auth, codeword: codeword };
 socket.connect();
 
@@ -28,6 +31,10 @@ socket.on('connect', () => {
   console.log('You are successfully connected');
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
   socket.on('restore-messages', ({ messages }) => { messages.forEach(addMessage) })
+  socket.on('response', message => addMessage({
+    ...message,
+    text: `${nameField.innerText ? nameField.innerText : 'Teacher'}: ` + message.text,
+  }));
 })
 
 let lastMove = 0;
@@ -61,8 +68,6 @@ form.addEventListener('submit', (event) => {
 
 })
 
-const nameField = document.getElementById('name');
-const sessionTitleField = document.getElementById('sessionTitle');
 
 function updateHeader(teacher, title) {
   document.getElementById('name').innerText = teacher;

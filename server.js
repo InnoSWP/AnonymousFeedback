@@ -62,13 +62,15 @@ module.exports = {
         console.log('Send messages to the student with id:', socket.id);
         const messages = await getMessages(socket.id, socket.handshake.auth.codeword);
         io.to(socket.id).emit('restore-messages', { messages }); // Send previously sent messages
+        io.to(socket.id).emit('response', { time: '11:11', text: ' I`m teacher', satisfaction: 'unknown' }); // Send previously sent messages
       }
 
       socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
         // const time = getTime();
         setTimeout(() => {
-          addFeedback(codeword, { time, text: message, satisfaction, sender: socket.id }); // add to database
-          socket.to(codeword).emit("receive-message", { text: message, time, satisfaction });
+          const feedback = { time, text: message, satisfaction, sender: socket.id };
+          addFeedback(codeword, feedback); // add to database
+          socket.to(codeword).emit("receive-message", feedback);
         }, delay * 1000);
       })
       socket.on('update-session', (codeword, data) => {
