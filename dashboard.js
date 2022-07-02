@@ -28,9 +28,9 @@ export const copyEvent = () => {
         link.blur();
 
         const button = document.getElementById('copy-button');
-        const initialText = button.innerText;
-        button.innerText = 'Copied!';
-        setTimeout(() => { button.innerText = initialText; }, 1000);
+        const initialBoxShadow = button.style.boxShadow;
+        button.style.boxShadow = '1px 1px 7px green';
+        setTimeout(() => { button.style.boxShadow = initialBoxShadow; }, 1000);
     })
 }
 
