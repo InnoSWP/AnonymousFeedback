@@ -5,11 +5,12 @@ export function addMessage(feedback) {
     const newMessage = document.createElement('div');
     newMessage.classList.add('feedback-item');
     newMessage.innerHTML = `
-                            <div class="feedback-image"><img src="/${feedback.satisfaction}.png"></div>
+                            <div class="feedback-image"><img ${feedback.satisfaction != 'unknown' ? '' : 'style = "display:none"'}
+                             src = "/${feedback.satisfaction}.png" ></div >
                             <div class="feedback-text">${feedback.text.replace(/</g, '&#60;')
             .replace(/>/g, "&#62;").replace(/\\/g, "&#92;")}</div >
                 <div class="feedback-time">${feedback.time}</div>
-                            `
+`
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
     console.log(feedbackList.scrollTop)
     if (Math.abs(feedbackList.scrollTop) < 200)

@@ -30,7 +30,12 @@ form.addEventListener('submit', (event) => {
   if (feedbackTextField.value.trim() != "") {
     if (Date.now() - lastMove > 5000) {
 
-      const satisfaction = document.querySelector('input[name="satisfaction"]:checked').value;
+      const checkedEmoji = document.querySelector('input[name="satisfaction"]:checked');
+      let satisfaction;
+      if (checkedEmoji)
+        satisfaction = checkedEmoji.value;
+      else
+        satisfaction = 'unknown';
       console.log(`You sent: "${feedbackTextField.value}" with satisfaction: "${satisfaction}" to session with codeword: "${codeword}"`);
       const sec = document.getElementById('delay').value;
       socket.emit('send-message', codeword, feedbackTextField.value, satisfaction, sec, getTime(sec));
@@ -79,4 +84,21 @@ feedbackTextField.addEventListener('keypress', e => {
     form.dispatchEvent(new Event('submit'));
   }
 })
+
+let prevChecked = null;
+const radios = document.querySelectorAll('input[name="satisfaction"]');
+radios.forEach(radio => radio.addEventListener('click', (e) => {
+  if (!prevChecked) {
+    prevChecked = radio;
+    return
+  }
+  if (radio === prevChecked) {
+    prevChecked = null;
+    radio.checked = false;
+  }
+  else {
+    prevChecked = radio;
+    radio.checked = true
+  }
+}));
 
