@@ -65,6 +65,19 @@ const getSessionByCodeword = async (codeword) => {
     return session;
 }
 
+const getMessages = async (studentID, codeword) => {
+    let messages = [];
+    try {
+        session = await Session.findOne({ codeword });
+        session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) });
+    } catch (e) {
+        console.log('Session was not found probably:', e);
+        messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
+    }
+    return messages;
+}
+
+
 //USES
 const runTest = async () => {
     await addSession({ teacher: '1', codeword: "AAB", feedback: [{ text: 'h!' }, { text: 'wowwwwww' }] })
@@ -77,4 +90,4 @@ const runTest = async () => {
 //REMOVE ALL
 // Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession };
+module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession, getMessages };

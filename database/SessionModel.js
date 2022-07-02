@@ -20,6 +20,10 @@ const feedback = new Schema({
         default: (new Date().getHours()) + ":" + (new Date().getMinutes()),
         required: true
     },
+    sender: {
+        type: String,
+        required: true
+    }
 });
 
 var sessionSchema = new Schema({

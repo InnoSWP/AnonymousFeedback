@@ -1,6 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession } = require('./database/mongodb');
+const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession, getMessages } = require('./database/mongodb');
 const { getNewCodeword } = require('./codewordSet');
 module.exports = {
   start: () => {
@@ -14,7 +14,7 @@ module.exports = {
       //For dashbord initialization
       if (!socket.request.headers.referer.includes('/dashboard')) { next(); return };
 
-      console.log('Parameters from client:', socket.handshake.auth);
+      console.log('Parameters from teacher:', socket.handshake.auth);
       if (socket.handshake.auth.id) {
         console.log(`Change from ${socket.id} to ${socket.handshake.auth.id}`)
         socket.id = socket.handshake.auth.id
@@ -24,6 +24,20 @@ module.exports = {
 
       socket.session = await getSession(socket.id);
 
+      next();
+    })
+
+    io.use(async (socket, next) => {
+      //Only for feedback page initialization
+      if (!socket.request.headers.referer.includes('/feedback')) { next(); return };
+
+      socket.messages = []; // Restored messages
+      console.log(`From feedback page: ${JSON.stringify(socket.handshake.auth)} `)
+      if (socket.handshake.auth.id) { // Socket was previously connected 
+        console.log(`Change student from ${socket.id} to ${socket.handshake.auth.id}`)
+        socket.id = socket.handshake.auth.id
+        socket.messages = getMessages(socket.id, socket.handshake.auth.codeword);
+      }
       next();
     })
 
@@ -44,10 +58,16 @@ module.exports = {
           io.to(socket.id).emit('init', "", "");
       }
 
+      if (socket.messages) {
+        console.log('Send messages to the student with id:', socket.id);
+        const messages = await getMessages(socket.id, socket.handshake.auth.codeword);
+        io.to(socket.id).emit('restore-messages', { messages }); // Send previously sent messages
+      }
+
       socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
         // const time = getTime();
         setTimeout(() => {
-          addFeedback(codeword, { time, text: message, satisfaction }); // add to database
+          addFeedback(codeword, { time, text: message, satisfaction, sender: socket.id }); // add to database
           socket.to(codeword).emit("receive-message", { text: message, time, satisfaction });
         }, delay * 1000);
       })
