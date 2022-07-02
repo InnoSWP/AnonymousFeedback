@@ -140,8 +140,8 @@ main {
     border-radius: 2px;
     padding: 5px;
     box-sizing: border-box;
-    box-shadow: 2px 1px 5px grey;
-    transition: all .25s ease-in-out;
+    box-shadow: 1px 1px 3px grey;
+    transition: all .2s ease-in-out;
     display: flex;
     max-width: 100%;
 }
@@ -151,7 +151,7 @@ main {
 }
 
 .feedback-item:hover {
-    box-shadow: 2px 1px 5px black;
+    box-shadow: 1px 1px 5px black;
 }
 
 .feedback-text {
