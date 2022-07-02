@@ -12,7 +12,6 @@ export function addMessage(feedback) {
                 <div class="feedback-time">${feedback.time}</div>
 `
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
-    console.log(feedbackList.scrollTop)
     if (Math.abs(feedbackList.scrollTop) < 200)
         feedbackList.scrollTop = 0;
 }
