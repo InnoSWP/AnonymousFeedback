@@ -2,6 +2,9 @@ const app = require('./index');
 const http = require('http').createServer(app);
 const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession } = require('./database/mongodb');
 const { getNewCodeword } = require('./codewordSet');
+const Filter = require('bad-words');
+const filter = new Filter();
+
 module.exports = {
   start: () => {
     const io = require('socket.io')(http, {
@@ -46,6 +49,7 @@ module.exports = {
 
       socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
         // const time = getTime();
+        message = filter.clean(message);
         setTimeout(() => {
           addFeedback(codeword, { time, text: message, satisfaction }); // add to database
           socket.to(codeword).emit("receive-message", { text: message, time, satisfaction });
