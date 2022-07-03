@@ -42,6 +42,7 @@ const addFeedback = async (codeword, feedback) => {
 
 const updateSession = async (teacherID, { teacher, title }) => {
     const session = await Session.findOne({ teacherID: teacherID });
+    if (!session) { console.log(`Session for teacher: ${teacherID} was NOT FOUND to update name/title`); return }
     if (teacher) session.teacher = teacher;
     if (title) session.title = title;
     await session.save();
