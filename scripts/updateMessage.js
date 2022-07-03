@@ -8,7 +8,7 @@ export const updateMessage = (message, id) => {
     else if (document.getElementById(id).childNodes[3].childNodes[4].classList.contains('answer'))
         answerDiv = document.getElementById(id).childNodes[3].childNodes[4];
     console.log(answerDiv, answerDiv.innerHTML);
-    if (!answerDiv.innerHTML) { answerDiv.innerHTML = `<b>New answer:</b> ${message}`; answerDiv.style.display = "block" }
+    if (!answerDiv.innerHTML || answerDiv.innerHTML.includes('New answer:')) { answerDiv.innerHTML = `<b>New answer:</b> ${message}`; answerDiv.style.display = "block" }
     else
         answerDiv.innerHTML = message;
 }

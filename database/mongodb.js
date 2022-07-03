@@ -71,13 +71,14 @@ const getMessages = async (studentID, codeword) => {
     let session;
     try {
         session = await Session.findOne({ codeword });
-        console.log(session, codeword)
     } catch (e) {
         console.log('Session was not found probably:', e);
         messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
         return messages;
     }
-    session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) });
+    if (session) session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) })
+    else
+        messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
     return messages;
 }
 
