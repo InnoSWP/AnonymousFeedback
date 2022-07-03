@@ -1,5 +1,6 @@
 const form = document.getElementById('confirm-form');
-import { getCookie, socket } from '../teacher-client';
+import { socket } from '../socket';
+import { getCookie } from './utils';
 
 export const formEvent = () => {
     form.addEventListener('click', (e) => e.stopPropagation()); // to avoid exiting by click on form

@@ -36,7 +36,7 @@ module.exports = {
       if (socket.handshake.auth.id) { // Socket was previously connected 
         console.log(`Change student from ${socket.id} to ${socket.handshake.auth.id}`)
         socket.id = socket.handshake.auth.id
-        socket.messages = getMessages(socket.id, socket.handshake.auth.codeword);
+        socket.messages = await getMessages(socket.id, socket.handshake.auth.codeword);
       }
       next();
     })
@@ -49,8 +49,9 @@ module.exports = {
       if (socket.session) {
         console.log('Init the client with codeword:', socket.session.codeword);
         socket.join(socket.session.codeword);
-        io.to(socket.id).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
-      } else if (socket.handshake.auth.codeword) {
+        io.to(socket.session.codeword).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
+      } else if (socket.request.headers.referer.includes('/dashboard') && socket.handshake.auth.codeword) {
+        console.log('Entered at teacher`s code')
         const session = await getSessionByCodeword(socket.handshake.auth.codeword);
         if (session)
           io.to(socket.id).emit('init', session.teacher, session.title);
@@ -60,17 +61,18 @@ module.exports = {
 
       if (socket.messages) {
         console.log('Send messages to the student with id:', socket.id);
-        const messages = await getMessages(socket.id, socket.handshake.auth.codeword);
-        io.to(socket.id).emit('restore-messages', { messages }); // Send previously sent messages
+        // const messages = await getMessages(socket.id, socket.handshake.auth.codeword);
+        io.to(socket.id).emit('restore-messages', { messages: socket.messages }); // Send previously sent messages
         io.to(socket.id).emit('response', { time: '11:11', text: ' I`m teacher', satisfaction: 'unknown' }); // Send previously sent messages
       }
 
       socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
         // const time = getTime();
-        setTimeout(() => {
+        setTimeout(async () => {
           const feedback = { time, text: message, satisfaction, sender: socket.id };
-          addFeedback(codeword, feedback); // add to database
-          socket.to(codeword).emit("receive-message", feedback);
+          const id = await addFeedback(codeword, feedback); // add to database
+          console.log(`Added ID: ${id} and send to codeword: ${codeword}`);
+          io.to(codeword).emit("receive-message", feedback, id);
         }, delay * 1000);
       })
       socket.on('update-session', (codeword, data) => {
@@ -82,6 +84,11 @@ module.exports = {
         console.log(`Deleting session from database with teacherID: ${teacherID}`);
         removeSession(teacherID);
       });
+
+      socket.on('send-response', (sender, response) => {
+        console.log(`Send to: ${sender} a message: ${JSON.stringify(response)}`)
+        io.to(sender).emit('receive-response', response)
+      })
     })
   }, http
 }

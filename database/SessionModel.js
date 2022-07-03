@@ -23,7 +23,11 @@ const feedback = new Schema({
     sender: {
         type: String,
         required: true
-    }
+    },
+    response: {
+        type: String,
+        required: false
+    },
 });
 
 var sessionSchema = new Schema({

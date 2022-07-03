@@ -37,6 +37,7 @@ const addFeedback = async (codeword, feedback) => {
     feedbackList.push(feedback);
     console.log(`Added feedback: ${JSON.stringify(feedback)}`)
     await session.save();
+    return feedbackList[feedbackList.length - 1].id;
 }
 
 const updateSession = async (teacherID, { teacher, title }) => {
@@ -67,13 +68,16 @@ const getSessionByCodeword = async (codeword) => {
 
 const getMessages = async (studentID, codeword) => {
     let messages = [];
+    let session;
     try {
         session = await Session.findOne({ codeword });
-        session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) });
+        console.log(session, codeword)
     } catch (e) {
         console.log('Session was not found probably:', e);
         messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
+        return messages;
     }
+    session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) });
     return messages;
 }
 
