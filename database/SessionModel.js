@@ -8,6 +8,7 @@ const feedback = new Schema({
     },
     satisfaction: {
         type: String,
+        default: 'unknown',
         required: true
     },
     date: {
