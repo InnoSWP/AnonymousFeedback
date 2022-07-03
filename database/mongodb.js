@@ -81,6 +81,17 @@ const getMessages = async (studentID, codeword) => {
     return messages;
 }
 
+const updateResponse = async (teacherID, feedbackID, text) => {
+    const session = await getSession(teacherID);
+    if (!session) { console.log('NO SESSION TO UPDATE RESPONSE'); return };
+    const feedback = session.feedback;
+
+    const entry = feedback.find(entry => entry._id == feedbackID);
+    entry.response = text;
+    await session.save();
+    console.log(`Updated response of feedback: ${entry.response}`);
+}
+
 
 //USES
 const runTest = async () => {
@@ -94,4 +105,4 @@ const runTest = async () => {
 //REMOVE ALL
 // Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession, getMessages };
+module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession, getMessages, updateResponse };

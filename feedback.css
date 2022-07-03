@@ -108,6 +108,10 @@ header {
     justify-content: space-around;
 }
 
+.answer {
+    display: inline-block;
+}
+
 
 main {
     flex-grow: 1;

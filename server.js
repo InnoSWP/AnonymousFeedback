@@ -1,6 +1,6 @@
 const app = require('./index');
 const http = require('http').createServer(app);
-const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession, getMessages } = require('./database/mongodb');
+const { updateSession, addSession, getSession, addFeedback, getSessionByCodeword, removeSession, getMessages, updateResponse } = require('./database/mongodb');
 const { getNewCodeword } = require('./codewordSet');
 module.exports = {
   start: () => {
@@ -42,28 +42,26 @@ module.exports = {
     })
 
     io.on('connection', async socket => {
-      // the client emits the send-message event 
-      // codeword represents the ID of the TA 
-
       // It was a teacher entered dashboard
       if (socket.session) {
-        console.log('Init the client with codeword:', socket.session.codeword);
+        console.log('Init the teacher with codeword:', socket.session.codeword);
         socket.join(socket.session.codeword);
         io.to(socket.session.codeword).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
-      } else if (socket.request.headers.referer.includes('/dashboard') && socket.handshake.auth.codeword) {
-        console.log('Entered at teacher`s code')
-        const session = await getSessionByCodeword(socket.handshake.auth.codeword);
-        if (session)
-          io.to(socket.id).emit('init', session.teacher, session.title);
-        else
-          io.to(socket.id).emit('init', "", "");
       }
+      // else if (socket.request.headers.referer.includes('/dashboard') && socket.handshake.auth.codeword) {
+      //   console.log('NOT PoSSIblE TO ENTER HERE')
+      //   const session = await getSessionByCodeword(socket.handshake.auth.codeword);
+      //   if (session)
+      //     io.to(socket.id).emit('init', session.teacher, session.title);
+      //   else
+      //     io.to(socket.id).emit('init', "", "");
+      // }
 
       if (socket.messages) {
         console.log('Send messages to the student with id:', socket.id);
         // const messages = await getMessages(socket.id, socket.handshake.auth.codeword);
         io.to(socket.id).emit('restore-messages', { messages: socket.messages }); // Send previously sent messages
-        io.to(socket.id).emit('response', { time: '11:11', text: ' I`m teacher', satisfaction: 'unknown' }); // Send previously sent messages
+        // io.to(socket.id).emit('response', { time: '11:11', text: ' I`m teacher', satisfaction: 'unknown' }); // Send previously sent messages
       }
 
       socket.on('send-message', (codeword, message, satisfaction, delay, time) => {
@@ -75,6 +73,10 @@ module.exports = {
           io.to(codeword).emit("receive-message", feedback, id);
         }, delay * 1000);
       })
+
+      socket.on('update-response', async (text, feedbackID) => {
+        await updateResponse(socket.id, feedbackID, text);
+      })
       socket.on('update-session', (codeword, data) => {
         console.log(`Codeword: ${codeword} with data: ${JSON.stringify(data)}`);
         updateSession(codeword, data);
@@ -85,9 +87,9 @@ module.exports = {
         removeSession(teacherID);
       });
 
-      socket.on('send-response', (sender, response) => {
-        console.log(`Send to: ${sender} a message: ${JSON.stringify(response)}`)
-        io.to(sender).emit('receive-response', response)
+      socket.on('update-response', (response, messageID, sender) => {
+        console.log(`Send to: ${sender} a message: ${response}`);
+        io.to(sender).emit('receive-response', response, messageID)
       })
     })
   }, http

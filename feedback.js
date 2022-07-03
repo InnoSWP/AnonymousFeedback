@@ -1,5 +1,6 @@
 const io = require('socket.io-client');
 const { addMessage } = require('./dashboard');
+const { updateMessage } = require('./scripts/updateMessage');
 const { host } = require('./static/constants');
 const URL = 'http://' + host; // server socket.io
 const socket = io(URL, {
@@ -30,11 +31,8 @@ socket.on('connect', () => {
   }
   console.log('You are successfully connected');
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
-  socket.on('restore-messages', ({ messages }) => { messages.forEach(addMessage) })
-  socket.on('receive-response', message => addMessage({
-    ...message,
-    text: `${nameField.innerText ? nameField.innerText : 'Teacher'}: ` + message.text,
-  }));
+  socket.on('restore-messages', ({ messages }) => { messages.forEach(message => addMessage(message, message._id)) })
+  socket.on('receive-response', (message, id) => updateMessage(message, id));
 })
 
 let lastMove = 0;

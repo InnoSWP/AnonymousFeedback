@@ -220,7 +220,10 @@ footer {
     font-size: 20px;
     border-top: 0.1px solid grey;
     border-style: dashed;
+}
 
+.answer {
+    display: inline-block;
 }
 
 .response-input::placeholder {
