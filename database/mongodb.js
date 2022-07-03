@@ -37,6 +37,7 @@ const addFeedback = async (codeword, feedback) => {
     feedbackList.push(feedback);
     console.log(`Added feedback: ${JSON.stringify(feedback)}`)
     await session.save();
+    return feedbackList[feedbackList.length - 1].id;
 }
 
 const updateSession = async (teacherID, { teacher, title }) => {
@@ -65,6 +66,34 @@ const getSessionByCodeword = async (codeword) => {
     return session;
 }
 
+const getMessages = async (studentID, codeword) => {
+    let messages = [];
+    let session;
+    try {
+        session = await Session.findOne({ codeword });
+    } catch (e) {
+        console.log('Session was not found probably:', e);
+        messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
+        return messages;
+    }
+    if (session) session.feedback.forEach(feedback => { if (feedback.sender == studentID) messages.push(feedback) })
+    else
+        messages = [{ satisfaction: 'unknown', text: "Hello. Sorry, it seems that your link is invalid or you entered wrong codeword:" + codeword, time: "" }];
+    return messages;
+}
+
+const updateResponse = async (teacherID, feedbackID, text) => {
+    const session = await getSession(teacherID);
+    if (!session) { console.log('NO SESSION TO UPDATE RESPONSE'); return };
+    const feedback = session.feedback;
+
+    const entry = feedback.find(entry => entry._id == feedbackID);
+    entry.response = text;
+    await session.save();
+    console.log(`Updated response of feedback: ${entry.response}`);
+}
+
+
 //USES
 const runTest = async () => {
     await addSession({ teacher: '1', codeword: "AAB", feedback: [{ text: 'h!' }, { text: 'wowwwwww' }] })
@@ -77,4 +106,4 @@ const runTest = async () => {
 //REMOVE ALL
 // Session.remove({}, () => console.log('All documents removed from Session collection'));
 
-module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession };
+module.exports = { addFeedback, getFeedback, addSession, updateSession, getSession, getSessionByCodeword, removeSession, getMessages, updateResponse };

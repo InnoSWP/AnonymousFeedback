@@ -1,5 +1,5 @@
-import { getCookie } from './teacher-client';
-import { socket } from './teacher-client';
+import { getCookie } from './scripts/utils';
+import { socket } from './socket';
 
 
 export const nameEvent = () => {

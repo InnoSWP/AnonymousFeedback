@@ -1,10 +1,14 @@
 const io = require('socket.io-client');
 const { addMessage } = require('./dashboard');
+const { updateMessage } = require('./scripts/updateMessage');
 const { host } = require('./static/constants');
 const URL = 'http://' + host; // server socket.io
 const socket = io(URL, {
   autoConnect: false,
 });
+
+let token = getCookie('token'); // extract value of token from cookie
+if (token) socket.auth = { id: token }; // to update id on the server
 
 const feedbackTextField = document.getElementById('feedbackText');
 const form = document.getElementById('form');
@@ -15,12 +19,21 @@ const query = new Proxy(new URLSearchParams(window.location.search), {
 const codeword = query.codeword;
 if (!codeword) document.location.href = '/';
 
-socket.auth = { codeword: codeword };
+const nameField = document.getElementById('name');
+const sessionTitleField = document.getElementById('sessionTitle');
+
+socket.auth = { ...socket.auth, codeword: codeword };
 socket.connect();
 
 socket.on('connect', () => {
+  if (!document.cookie.token) {
+    document.cookie = 'token=' + socket.id; // save for future restoring
+  }
   console.log('You are successfully connected');
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
+  socket.on('restore-messages', ({ messages }) => { messages.forEach(message => addMessage(message, message._id)) })
+  socket.on('receive-response', (message, id) => updateMessage(message, id));
+  socket.on('return-id', id => console.log(document.getElementById('feedback-list').firstChild.id = id, id))
 })
 
 let lastMove = 0;
@@ -54,8 +67,6 @@ form.addEventListener('submit', (event) => {
 
 })
 
-const nameField = document.getElementById('name');
-const sessionTitleField = document.getElementById('sessionTitle');
 
 function updateHeader(teacher, title) {
   document.getElementById('name').innerText = teacher;
@@ -102,3 +113,9 @@ radios.forEach(radio => radio.addEventListener('click', (e) => {
   }
 }));
 
+function getCookie(name) {
+  return document.cookie.split('; ').reduce((r, v) => {
+    const parts = v.split('=')
+    return parts[0] === name ? decodeURIComponent(parts[1]) : r
+  }, '')
+}
