@@ -1,5 +1,5 @@
 import { host } from '../static/constants';
-import { getCookie } from '../teacher-client';
+import { getCookie } from './utils';
 
 const exportButton = document.getElementById('export-button');
 

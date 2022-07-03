@@ -31,7 +31,7 @@ socket.on('connect', () => {
   console.log('You are successfully connected');
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
   socket.on('restore-messages', ({ messages }) => { messages.forEach(addMessage) })
-  socket.on('response', message => addMessage({
+  socket.on('receive-response', message => addMessage({
     ...message,
     text: `${nameField.innerText ? nameField.innerText : 'Teacher'}: ` + message.text,
   }));

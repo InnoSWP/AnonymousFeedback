@@ -1,9 +1,14 @@
 import { host } from "./static/constants";
+import { socket } from './socket';
 
-export function addMessage(feedback) {
+export function addMessage(feedback, id) {
     const feedbackList = document.getElementById('feedback-list');
     const newMessage = document.createElement('div');
     newMessage.classList.add('feedback-item');
+
+    console.log(`Add message: ${JSON.stringify(feedback)} with ID: ${id}`)
+    if (id) newMessage.setAttribute('id', id);
+
     newMessage.innerHTML = `
                             <div class="feedback-image"><img ${feedback.satisfaction != 'unknown' ? '' : 'style = "display:none"'}
                              src = "/${feedback.satisfaction}.png" ></div >
@@ -12,6 +17,35 @@ export function addMessage(feedback) {
                 <div class="feedback-time">${feedback.time}</div>
 `
     feedbackList.insertAdjacentElement("afterbegin", newMessage);
+
+    // Teacher`s side
+    if (window.location.href.includes('/dashboard')) {
+        newMessage.setAttribute('sender', feedback.sender);
+        newMessage.addEventListener('click', e => {
+            e.preventDefault();
+            const sender = newMessage.getAttribute('sender');
+
+            const form = document.createElement('form');
+            form.innerHTML = '<input class="response-input" type="text" placeholder="Write the response">';
+            form.style.display = 'block';
+            newMessage.childNodes[3].appendChild(form);
+
+            // Send response
+            form.addEventListener('submit', e => {
+                e.preventDefault();
+                const response = form.childNodes[0].value;
+                console.log(`Your response is ${response} to ${sender}`);
+                socket.emit('send-response', sender, { text: response });
+                form.childNodes[0].blur();
+            })
+
+        }, { once: true });
+    }
+
+    if (window.location.href.includes('/feedback')) {
+        const a = 1;
+    }
+
     if (Math.abs(feedbackList.scrollTop) < 200)
         feedbackList.scrollTop = 0;
 }
