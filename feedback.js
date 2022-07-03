@@ -33,6 +33,7 @@ socket.on('connect', () => {
   socket.on('init', (teacher, title) => updateHeader(teacher, title));
   socket.on('restore-messages', ({ messages }) => { messages.forEach(message => addMessage(message, message._id)) })
   socket.on('receive-response', (message, id) => updateMessage(message, id));
+  socket.on('return-id', id => console.log(document.getElementById('feedback-list').firstChild.id = id, id))
 })
 
 let lastMove = 0;

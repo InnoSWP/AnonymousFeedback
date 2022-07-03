@@ -48,14 +48,13 @@ module.exports = {
         socket.join(socket.session.codeword);
         io.to(socket.session.codeword).emit('init', socket.session.codeword, socket.session.feedback, socket.session.teacher, socket.session.title);
       }
-      // else if (socket.request.headers.referer.includes('/dashboard') && socket.handshake.auth.codeword) {
-      //   console.log('NOT PoSSIblE TO ENTER HERE')
-      //   const session = await getSessionByCodeword(socket.handshake.auth.codeword);
-      //   if (session)
-      //     io.to(socket.id).emit('init', session.teacher, session.title);
-      //   else
-      //     io.to(socket.id).emit('init', "", "");
-      // }
+      else if (socket.handshake.auth.codeword) {
+        const session = await getSessionByCodeword(socket.handshake.auth.codeword);
+        if (session)
+          io.to(socket.id).emit('init', session.teacher, session.title);
+        else
+          io.to(socket.id).emit('init', "", "");
+      }
 
       if (socket.messages) {
         console.log('Send messages to the student with id:', socket.id);
@@ -71,6 +70,7 @@ module.exports = {
           const id = await addFeedback(codeword, feedback); // add to database
           console.log(`Added ID: ${id} and send to codeword: ${codeword}`);
           io.to(codeword).emit("receive-message", feedback, id);
+          io.to(socket.id).emit('return-id', id);
         }, delay * 1000);
       })
 
