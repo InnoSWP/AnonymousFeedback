@@ -68,7 +68,10 @@ app.get('/export', async (request, response) => {
 
     await Session.findOne({ 'teacherID': teacherID }).select('feedback').lean().then(function (doc) {
         if (!doc) {
-            throw new Error('No record found');
+            // throw new Error('No record found');
+            console.log(`Session with teacherID: ${teacherID} was NOT FOUND`);
+            response.end('Your session is not found, try to create one');
+            return
         }
 
         var filteredDoc = []
